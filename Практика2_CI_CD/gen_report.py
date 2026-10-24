@@ -108,7 +108,7 @@ def main():
     add_paragraph(doc,
         "dotnet publish -c Release -o publish\n"
         "bash \"Практика2_CI_CD/scripts/run_selfcheck_as_junit.sh\" "
-        "publish/FileManagerApp.dll test-results.xml", indent=False)
+        "publish/FileManagerApp.dll test-results.xml", indent=False, left=True)
     add_paragraph(doc,
         "В XML получилось tests=\"18\" failures=\"0\" errors=\"0\". Скрипт разбирает "
         "строки OK: и делает по каждой отдельный <testcase>; если самопроверка "
@@ -117,12 +117,48 @@ def main():
         "Сборка и запуск образа:")
     add_paragraph(doc,
         "docker build -t filemanagerapp:local -f Практика2_CI_CD/Dockerfile .\n"
-        "docker run --rm filemanagerapp:local --selfcheck", indent=False)
+        "docker run --rm filemanagerapp:local --selfcheck", indent=False, left=True)
     add_paragraph(doc,
-        "Образ собрался, размер около 288 МБ, контейнер вернул 0. Semgrep по 13 "
-        "исходным файлам не нашёл ошибок уровня ERROR. Полноценный GitLab-раннер не "
+        "Образ собрался, размер около 288 МБ, контейнер вернул 0. Semgrep прогнал 52 "
+        "правила по 11 файлам и не нашёл ошибок уровня ERROR. Полноценный GitLab-раннер не "
         "запускался: это единственное, что проверено локально, а не в веб-интерфейсе "
         "GitLab.")
+
+    add_heading(doc, "5.1. Артефакты конвейера", level=2)
+    add_paragraph(doc,
+        "Артефакт у каждой стадии свой, и в GitLab он доступен кнопкой Artifacts "
+        "у джобы, а JUnit-отчёт — вкладкой Tests у пайплайна. Чтобы показать то же "
+        "самое без развёрнутого сервера, добавлен скрипт run_jobs_locally.sh: он "
+        "запускает каждую джобу в том же образе и с теми же командами, что записаны "
+        "в .gitlab-ci.yml, и раскладывает результат по папкам artifacts/<имя_джобы>. "
+        "Прогон занимает около двух минут и перезаписывает снимки.")
+    add_table(doc, ["Джоба", "Образ", "Артефакт", "Что в нём видно"], [
+        ["build_app", "dotnet/sdk:8.0", "publish/",
+         "FileManagerApp.dll, .deps.json, .runtimeconfig.json, .pdb, launcher"],
+        ["run_tests", "dotnet/sdk:8.0", "test-results.xml",
+         "tests=\"18\" failures=\"0\" errors=\"0\""],
+        ["security_scan", "semgrep/semgrep", "job.log",
+         "Ran 52 rules on 11 files: 0 findings, код возврата 0"],
+        ["local_deploy", "docker:24.0", "image.inspect.txt",
+         "User=appuser, размер 288 МБ, entrypoint без SDK-слоёв"],
+    ])
+    add_paragraph(doc,
+        "Именно этот прогон нашёл настоящую ошибку в конфигурации. Стадия run_tests "
+        "брала образ dotnet/sdk:8.0 и запускала в нём уже собранный бинарник, но "
+        "пакета libsqlite3 в этом образе нет. На Windows это не проявляется: там "
+        "winsqlite3.dll входит в состав системы, и загрузчик находит SQLite через "
+        "неё. В Linux-контейнере загрузчик ищет libsqlite3.so.0, не находит, и "
+        "первый же выход к базе роняет самопроверку с сообщением о незагруженной "
+        "библиотеке — в логе это выглядело как tests=\"1\" failures=\"1\".")
+    add_paragraph(doc,
+        "Исправление: в run_tests перед запуском добавлена установка libsqlite3-0 — "
+        "того же пакета, который уже стоит в Dockerfile для финального runtime-образа. "
+        "После этого стадия проходит честно: 18 проверок из 18, код возврата 0, и "
+        "тот же результат повторяется внутри собранного образа на стадии деплоя.")
+    add_paragraph(doc,
+        "Что при этом остаётся непроверенным: очередь раннеров, хранение артефактов "
+        "на сервере GitLab и срок их жизни (expire_in: 1 day). Локально артефакты "
+        "просто копируются в папку, а не загружаются на сервер.")
 
     add_heading(doc, "6. Секреты и риски")
     add_paragraph(doc,

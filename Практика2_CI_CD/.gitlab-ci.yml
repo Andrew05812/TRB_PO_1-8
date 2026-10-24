@@ -55,6 +55,11 @@ run_tests:
   dependencies:
     - build_app
   script:
+    # В образе dotnet/sdk нет libsqlite3, а приложение дёргает SQLite через
+    # P/Invoke (см. Практика1_.../SqliteNative.cs). Без этого пакета --selfcheck
+    # падает на первой же работе с БД, поэтому ставим пакет прямо в джобе.
+    # В финальном образе (Dockerfile) тот же пакет уже стоит.
+    - apt-get update -qq && apt-get install -y -qq --no-install-recommends libsqlite3-0
     - cd publish
     - bash "$CI_PROJECT_DIR/Практика2_CI_CD/scripts/run_selfcheck_as_junit.sh" FileManagerApp.dll "$CI_PROJECT_DIR/test-results.xml"
   artifacts:

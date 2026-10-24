@@ -1,0 +1,6 @@
+FileManagerApp
+FileManagerApp.deps.json
+FileManagerApp.dll
+FileManagerApp.pdb
+FileManagerApp.runtimeconfig.json
+138K	/c/Users/Andre/OneDrive/Рабочий стол/VUZ/aa 7 sem/ТРБ ПО/проверить и доработать/ПЗ_Комплект/Практика2_CI_CD/artifacts/build_app/publish

@@ -1,0 +1,14 @@
+ENTRYPOINT ["dotnet" "FileManagerApp.dll"]
+USER appuser
+RUN /bin/sh -c chown -R appuser:appuser /app # buildkit
+COPY /app/publish . # buildkit
+RUN /bin/sh -c useradd --uid 10001 --create-home --shell /usr/sbin/nologin appuser # buildkit
+RUN /bin/sh -c apt-get update     && apt-get install -y --no-install-recommends libsqlite3-0     && rm -rf /var/lib/apt/lists/* # buildkit
+WORKDIR /app
+RUN /bin/sh -c ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet # buildkit
+COPY /dotnet /usr/share/dotnet # buildkit
+ENV DOTNET_VERSION=8.0.32
+RUN /bin/sh -c groupadd         --gid=$APP_UID         app     && useradd --no-log-init         --uid=$APP_UID         --gid=$APP_UID         --create-home         app # buildkit
+RUN /bin/sh -c apt-get update     && apt-get install -y --no-install-recommends         ca-certificates                 libc6         libgcc-s1         libicu72         libssl3         libstdc++6         tzdata         zlib1g     && rm -rf /var/lib/apt/lists/* # buildkit
+ENV APP_UID=1654 ASPNETCORE_HTTP_PORTS=8080 DOTNET_RUNNING_IN_CONTAINER=true
+# debian.sh --arch 'amd64' out/ 'bookworm' '@1792531975'

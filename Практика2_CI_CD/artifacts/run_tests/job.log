@@ -1,0 +1,37 @@
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package libsqlite3-0:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 9951 files and directories currently installed.)
+Preparing to unpack .../libsqlite3-0_3.40.1-2+deb12u2_amd64.deb ...
+Unpacking libsqlite3-0:amd64 (3.40.1-2+deb12u2) ...
+Setting up libsqlite3-0:amd64 (3.40.1-2+deb12u2) ...
+Processing triggers for libc-bin (2.36-9+deb12u14) ...
+  OK: Login должен вернуть того же пользователя, что Register
+  OK: Login с неверным паролем должен бросать исключение
+  OK: Короткий пароль должен отклоняться
+Файл создан, запись в БД id = 1
+  OK: Файл должен быть создан на диске
+Файл изменён, запись в БД id = 1
+  OK: Файл должен измениться
+  OK: Размер файла в БД должен обновиться
+  OK: Чужой файл не должен читаться
+Сохранено 1 записей в /tmp/fm_selfcheck_c38bb929f57749e4b7c7b77ca139a9b1/files.json
+  OK: JSON-экспорт должен создать файл
+Импорт завершён: добавлено 0, обновлено 1, пропущено 0
+Импорт завершён: добавлено 1, обновлено 0, пропущено 0
+  OK: Импортированная запись должна появиться в БД
+Сохранено 2 записей в /tmp/fm_selfcheck_c38bb929f57749e4b7c7b77ca139a9b1/files.xml
+  OK: XML-экспорт должен создать файл
+Импорт завершён: добавлено 0, обновлено 2, пропущено 0
+Архив создан: /tmp/fm_selfcheck_c38bb929f57749e4b7c7b77ca139a9b1/archive.zip
+  OK: ZIP-архив должен быть создан
+Архив распакован в /tmp/fm_selfcheck_c38bb929f57749e4b7c7b77ca139a9b1/extracted
+  OK: Файл внутри архива должен быть распакован
+  OK: ZIP с выходом за папку назначения должен отклоняться
+  OK: Файл не должен появиться вне папки распаковки
+Файл удалён
+  OK: Файл должен быть удалён
+  OK: Запись удалённого файла должна исчезнуть из БД
+  OK: В журнале операций должны появиться записи
+  OK: Изменение файла должно попадать в журнал
+SELFCHECK: все проверки пройдены успешно (10/24/2026 09:59:08)
+[exit code] 0

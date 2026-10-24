@@ -68,11 +68,26 @@ def add_heading(doc, text, level=1):
     _set_font(p.add_run(text), size=14 if level == 1 else 12, bold=True)
 
 
-def add_paragraph(doc, text, indent=True, center=False):
+def add_paragraph(doc, text, indent=True, center=False, left=False):
+    """Абзац отчёта.
+
+    Кириллическую прозу выравниваем по ширине, а строки с командами - по левому
+    краю. Иначе justify растягивает одиночные пробелы в команде на полстроки, и
+    "dotnet publish -c Release" выглядит как таблица. Правило простое: если в
+    тексте нет ни одной кириллической буквы, считаем его техническим.
+    Явный left=True перекрывает автоопределение.
+    """
+    looks_like_command = left or bool(text) and not any(
+        "а" <= ch <= "я" or ch == "ё" for ch in text.lower())
     p = doc.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.CENTER if center else WD_ALIGN_PARAGRAPH.JUSTIFY
+    if center:
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    elif looks_like_command:
+        p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    else:
+        p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     p.paragraph_format.space_after = Pt(4)
-    if indent and not center:
+    if indent and not center and not looks_like_command:
         p.paragraph_format.first_line_indent = Cm(1.25)
     _set_font(p.add_run(text))
 
