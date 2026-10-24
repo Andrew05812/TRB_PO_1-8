@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="FileManagerApp.SelfCheck" tests="18" failures="0" errors="0">
+  <testcase classname="FileManagerApp.SelfCheck" name="Login должен вернуть того же пользователя, что Register" />
+  <testcase classname="FileManagerApp.SelfCheck" name="Login с неверным паролем должен бросать исключение" />
+  <testcase classname="FileManagerApp.SelfCheck" name="Короткий пароль должен отклоняться" />
+  <testcase classname="FileManagerApp.SelfCheck" name="Файл должен быть создан на диске" />
+  <testcase classname="FileManagerApp.SelfCheck" name="Файл должен измениться" />
+  <testcase classname="FileManagerApp.SelfCheck" name="Размер файла в БД должен обновиться" />
+  <testcase classname="FileManagerApp.SelfCheck" name="Чужой файл не должен читаться" />
+  <testcase classname="FileManagerApp.SelfCheck" name="JSON-экспорт должен создать файл" />
+  <testcase classname="FileManagerApp.SelfCheck" name="Импортированная запись должна появиться в БД" />
+  <testcase classname="FileManagerApp.SelfCheck" name="XML-экспорт должен создать файл" />
+  <testcase classname="FileManagerApp.SelfCheck" name="ZIP-архив должен быть создан" />
+  <testcase classname="FileManagerApp.SelfCheck" name="Файл внутри архива должен быть распакован" />
+  <testcase classname="FileManagerApp.SelfCheck" name="ZIP с выходом за папку назначения должен отклоняться" />
+  <testcase classname="FileManagerApp.SelfCheck" name="Файл не должен появиться вне папки распаковки" />
+  <testcase classname="FileManagerApp.SelfCheck" name="Файл должен быть удалён" />
+  <testcase classname="FileManagerApp.SelfCheck" name="Запись удалённого файла должна исчезнуть из БД" />
+  <testcase classname="FileManagerApp.SelfCheck" name="В журнале операций должны появиться записи" />
+  <testcase classname="FileManagerApp.SelfCheck" name="Изменение файла должно попадать в журнал" />
+</testsuite>
