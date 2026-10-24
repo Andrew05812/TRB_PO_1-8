@@ -1,29 +1,27 @@
 #0 building with "default" instance using docker driver
 
 #1 [internal] load build definition from Dockerfile
-#1 transferring dockerfile:
 #1 transferring dockerfile: 2.18kB 0.1s done
-#1 DONE 0.3s
+#1 DONE 0.1s
 
 #2 [internal] load metadata for mcr.microsoft.com/dotnet/runtime:8.0
 #2 ...
 
 #3 [internal] load metadata for mcr.microsoft.com/dotnet/sdk:8.0
-#3 DONE 0.8s
+#3 DONE 0.2s
 
 #2 [internal] load metadata for mcr.microsoft.com/dotnet/runtime:8.0
-#2 DONE 2.1s
+#2 DONE 0.7s
 
 #4 [internal] load .dockerignore
-#4 transferring context: 33B 0.0s
-#4 transferring context: 418B 0.2s done
-#4 DONE 0.3s
+#4 transferring context: 416B 0.1s
+#4 transferring context: 418B 0.1s done
+#4 DONE 0.2s
 
 #5 [internal] load build context
 #5 DONE 0.0s
 
 #6 [final 1/6] FROM mcr.microsoft.com/dotnet/runtime:8.0@sha256:1b2f288e3a87cd251322f304e176327b6c00ec3bc1847f38b69a58cb7251e994
-#6 resolve mcr.microsoft.com/dotnet/runtime:8.0@sha256:1b2f288e3a87cd251322f304e176327b6c00ec3bc1847f38b69a58cb7251e994
 #6 resolve mcr.microsoft.com/dotnet/runtime:8.0@sha256:1b2f288e3a87cd251322f304e176327b6c00ec3bc1847f38b69a58cb7251e994 0.1s done
 #6 DONE 0.1s
 
@@ -32,34 +30,34 @@
 #7 DONE 0.1s
 
 #5 [internal] load build context
-#5 transferring context: 72.93kB 0.4s done
-#5 DONE 0.5s
+#5 transferring context: 72.93kB 0.3s done
+#5 DONE 0.4s
 
 #8 [final 2/6] WORKDIR /app
 #8 CACHED
 
-#9 [build 2/6] WORKDIR /src
+#9 [build 3/6] COPY Практика1_Файловый_менеджер/FileManagerApp/ ./FileManagerApp/
 #9 CACHED
 
-#10 [build 4/6] WORKDIR /src/FileManagerApp
+#10 [build 6/6] RUN dotnet publish -c Release -o /app/publish --no-restore
 #10 CACHED
 
-#11 [build 5/6] RUN dotnet restore
+#11 [final 3/6] RUN apt-get update     && apt-get install -y --no-install-recommends libsqlite3-0     && rm -rf /var/lib/apt/lists/*
 #11 CACHED
 
-#12 [final 4/6] RUN useradd --uid 10001 --create-home --shell /usr/sbin/nologin appuser
+#12 [build 2/6] WORKDIR /src
 #12 CACHED
 
-#13 [build 3/6] COPY Практика1_Файловый_менеджер/FileManagerApp/ ./FileManagerApp/
+#13 [build 4/6] WORKDIR /src/FileManagerApp
 #13 CACHED
 
 #14 [final 5/6] COPY --from=build /app/publish .
 #14 CACHED
 
-#15 [final 3/6] RUN apt-get update     && apt-get install -y --no-install-recommends libsqlite3-0     && rm -rf /var/lib/apt/lists/*
+#15 [build 5/6] RUN dotnet restore
 #15 CACHED
 
-#16 [build 6/6] RUN dotnet publish -c Release -o /app/publish --no-restore
+#16 [final 4/6] RUN useradd --uid 10001 --create-home --shell /usr/sbin/nologin appuser
 #16 CACHED
 
 #17 [final 6/6] RUN chown -R appuser:appuser /app
@@ -67,14 +65,14 @@
 
 #18 exporting to image
 #18 exporting layers 0.0s done
-#18 exporting manifest sha256:97923c39b6dacc3f72055ef1b71df165ad76f46612dfff14cb1250c723f57a7f 0.0s done
+#18 exporting manifest sha256:97923c39b6dacc3f72055ef1b71df165ad76f46612dfff14cb1250c723f57a7f done
 #18 exporting config sha256:f1bb6149ff571faf633e6d69ef113ee7efd1f413a8990b914d41c16f23891b31 done
-#18 exporting attestation manifest sha256:b27657bfa1791b487480f5ed82591e1762b71ae35af60cf615e7c7db60aa1699 0.1s done
-#18 exporting manifest list sha256:327829b976af4e72be8d5dd41308b3c8a68eaaa70ec72dfcd2c8b01b16b73728
-#18 exporting manifest list sha256:327829b976af4e72be8d5dd41308b3c8a68eaaa70ec72dfcd2c8b01b16b73728 0.1s done
+#18 exporting attestation manifest sha256:ad3df8e539e859a83ad6163718d18e29733ea3137baa697a1b4d46e25dcc2754
+#18 exporting attestation manifest sha256:ad3df8e539e859a83ad6163718d18e29733ea3137baa697a1b4d46e25dcc2754 0.0s done
+#18 exporting manifest list sha256:0f5e04b244f9bc16329c05a603c58303be5232c0f2c8ec50ce9b9126cc06439f 0.1s done
 #18 naming to docker.io/library/filemanagerapp:local done
 #18 unpacking to docker.io/library/filemanagerapp:local 0.0s done
-#18 DONE 0.5s
+#18 DONE 0.3s
   OK: Login должен вернуть того же пользователя, что Register
   OK: Login с неверным паролем должен бросать исключение
   OK: Короткий пароль должен отклоняться
@@ -84,17 +82,17 @@
   OK: Файл должен измениться
   OK: Размер файла в БД должен обновиться
   OK: Чужой файл не должен читаться
-Сохранено 1 записей в /tmp/fm_selfcheck_808c5a7159734cbba56a7806a38ce110/files.json
+Сохранено 1 записей в /tmp/fm_selfcheck_10fe5f045af0429fbb2e60b05120907b/files.json
   OK: JSON-экспорт должен создать файл
 Импорт завершён: добавлено 0, обновлено 1, пропущено 0
 Импорт завершён: добавлено 1, обновлено 0, пропущено 0
   OK: Импортированная запись должна появиться в БД
-Сохранено 2 записей в /tmp/fm_selfcheck_808c5a7159734cbba56a7806a38ce110/files.xml
+Сохранено 2 записей в /tmp/fm_selfcheck_10fe5f045af0429fbb2e60b05120907b/files.xml
   OK: XML-экспорт должен создать файл
 Импорт завершён: добавлено 0, обновлено 2, пропущено 0
-Архив создан: /tmp/fm_selfcheck_808c5a7159734cbba56a7806a38ce110/archive.zip
+Архив создан: /tmp/fm_selfcheck_10fe5f045af0429fbb2e60b05120907b/archive.zip
   OK: ZIP-архив должен быть создан
-Архив распакован в /tmp/fm_selfcheck_808c5a7159734cbba56a7806a38ce110/extracted
+Архив распакован в /tmp/fm_selfcheck_10fe5f045af0429fbb2e60b05120907b/extracted
   OK: Файл внутри архива должен быть распакован
   OK: ZIP с выходом за папку назначения должен отклоняться
   OK: Файл не должен появиться вне папки распаковки
@@ -103,5 +101,5 @@
   OK: Запись удалённого файла должна исчезнуть из БД
   OK: В журнале операций должны появиться записи
   OK: Изменение файла должно попадать в журнал
-SELFCHECK: все проверки пройдены успешно (10/24/2026 09:59:53)
+SELFCHECK: все проверки пройдены успешно (10/24/2026 12:42:16)
 [exit code] 0

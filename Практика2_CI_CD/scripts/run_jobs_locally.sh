@@ -111,10 +111,14 @@ if [ "$WANT" = "all" ] || [ "$WANT" = "run_tests" ]; then
 fi
 
 # ---------------------------------------------------------------------------
-# security_scan: Semgrep по исходникам приложения, уровень ERROR роняет джобу
+# security_scan: Semgrep по исходникам приложения, уровень ERROR роняет джобу.
+# Параллельно прогоняю тот же сканер по демонстрационной мишени из sast_demo/ -
+# иначе в артефактах видно только "0 findings", и по этому нельзя сказать,
+# работает ли gate вообще.
 # ---------------------------------------------------------------------------
 if [ "$WANT" = "all" ] || [ "$WANT" = "security_scan" ]; then
     mkdir -p "$ART/security_scan"
+
     run_job security_scan security_scan/job.log \
         docker run --rm \
             -v "$MOUNT_ROOT:/project" -w /project \
@@ -124,6 +128,71 @@ if [ "$WANT" = "all" ] || [ "$WANT" = "security_scan" ]; then
                 semgrep scan --config auto --severity ERROR --error \
                     --exclude bin --exclude obj .
             ' || rc_total=1
+
+    # Тот же скан, но без --severity ERROR: видно и предупреждения, которых в
+    # проекте нет, и что сканер вообще проходил по файлам. Для GitLab Security
+    # Reporting сюда же добавляется --sarif - но в этом проекте он даёт 2 МБ
+    # описаний правил при нуле находок, поэтому в артефактах оставлен только
+    # JSON: он переносит то же самое компактно и читается глазами.
+    docker run --rm \
+        -v "$MOUNT_ROOT:/project" -w /project \
+        --entrypoint "" \
+        "$SEMGREP_IMAGE" bash -c '
+            cd "'"$APP_DIR"'"
+            semgrep scan --config auto --json --quiet \
+                --exclude bin --exclude obj --output /project/semgrep_app.json .
+        ' > /dev/null 2>&1
+    [ -f "$ROOT/semgrep_app.json" ] && mv "$ROOT/semgrep_app.json" "$ART/security_scan/semgrep_app.json"
+    rm -f "$ROOT/semgrep_app.sarif"
+
+    # Демонстрация gate: заведомо уязвимый файл. Джоба ОБЯЗАНА упасть именно
+    # из-за находки. Проверяю это двумя условиями сразу: ненулевой код возврата
+    # И непустой список находок в JSON. Без второго условия мимо пройдёт любая
+    # ошибка запуска Semgrep - например "Invalid scanning root", которая тоже
+    # даёт код 2, но к безопасности отношения не имеет.
+    #
+    # Внутрь папки мишени заходим cd, а не передаём путь аргументом: у корня
+    # комплекта кириллические сегменты, и Semgrep на них отказывается
+    # сканировать (то же самое описано в комментарии к security_scan в .gitlab-ci.yml).
+    note "security_scan: проверка, что gate ловит уязвимый код (sast_demo)"
+    docker run --rm \
+        -v "$MOUNT_ROOT:/project" -w /project \
+        --entrypoint "" \
+        "$SEMGREP_IMAGE" bash -c '
+            cd Практика2_CI_CD/sast_demo
+            semgrep scan --config auto --severity ERROR --error \
+                --json --quiet --output /project/demo.json .
+        ' > "$ART/security_scan/demo_job.log" 2>&1
+    demo_rc=$?
+    [ -f "$ROOT/demo.json" ] && mv "$ROOT/demo.json" "$ART/security_scan/demo_findings.json"
+
+    # Считаем находки grep'ом, а не python'ом: под Git Bash путь вида /c/Users
+    # до Windows-интерпретатора не доходит, и проверка молча ломалась.
+    demo_hits=$(grep -o '"check_id"' "$ART/security_scan/demo_findings.json" 2>/dev/null | wc -l | tr -d ' ')
+    case "$demo_hits" in
+        ''|*[!0-9]*) demo_hits=0 ;;
+    esac
+
+    if [ "$demo_rc" -ne 0 ] && [ "$demo_hits" -gt 0 ]; then
+        echo "OK: стадия SAST остановила конвейер - находок: $demo_hits, код возврата: $demo_rc" \
+            | tee -a "$ART/security_scan/demo_job.log"
+    else
+        echo "ПРОБЛЕМА: gate не отработал как ожидалось (находок: $demo_hits, код: $demo_rc)" \
+            | tee -a "$ART/security_scan/demo_job.log"
+        rc_total=1
+    fi
+
+    # Тот же прогон по мишени, но без --severity ERROR: видно, что ловится на
+    # уровне предупреждений и что сканер вообще не увидел. Это аргумент для
+    # ручного ревью, а не для gate.
+    docker run --rm \
+        -v "$MOUNT_ROOT:/project" -w /project \
+        --entrypoint "" \
+        "$SEMGREP_IMAGE" bash -c '
+            cd Практика2_CI_CD/sast_demo
+            semgrep scan --config auto --json --quiet --output /project/demo_all.json .
+        ' > /dev/null 2>&1
+    [ -f "$ROOT/demo_all.json" ] && mv "$ROOT/demo_all.json" "$ART/security_scan/demo_all_levels.json"
 fi
 
 # ---------------------------------------------------------------------------
