@@ -49,7 +49,9 @@ doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
 para("Решение по файлу: Won't fix (ложное срабатывание)", bold=True, size=12,
      align=WD_ALIGN_PARAGRAPH.CENTER, space_after=6)
 
-para("Колесников Андрей Юрьевич, группа БСБО-03-23, студенческий билет 23Б0099",
+para("Колесников Андрей Юрьевич, 4 курс, группа БСБО-03-23",
+     bold=True, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=2)
+para("Студенческий билет 23Б0099, номер по журналу 10",
      bold=True, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=8)
 
 para("Комментарий", bold=True, size=12, space_after=4)
@@ -94,7 +96,7 @@ para(
 
 doc.save(OUT_DOCX)
 
-# LibreOffice установлен на машине; конвертируем в PDF и убираем docx.
+# LibreOffice установлен на машине; конвертируем в PDF и оставляем docx для правок.
 subprocess.run(
     [
         r"C:\Program Files\LibreOffice\program\soffice.exe",
@@ -109,5 +111,7 @@ subprocess.run(
     stdout=subprocess.PIPE,
     stderr=subprocess.PIPE,
 )
-os.remove(OUT_DOCX)
+# Оставляем docx рядом с PDF: по заданию нужен PDF, но Word тоже полезен
+# для правок перед защитой.
+print("DOCX:", OUT_DOCX)
 print("PDF:", OUT_PDF)

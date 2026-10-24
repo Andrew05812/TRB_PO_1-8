@@ -9,7 +9,7 @@ from docx.shared import Cm
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "_tools"))
-from docx_helper import add_heading, add_paragraph, add_table, add_title, new_document
+from docx_helper import add_heading, add_paragraph, add_table, add_title, new_document, save_docx_and_pdf
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
@@ -34,8 +34,8 @@ def main():
     add_title(doc, "Отчёт по практике 8")
     add_title(doc, "Безопасность контейнеров: веб-приложение, база данных и сканирование")
     add_paragraph(doc, "", indent=False)
-    add_paragraph(doc, "Выполнил: Колесников Андрей Юрьевич, группа БСБО-03-23, "
-                       "студенческий билет 23Б0099", center=True, indent=False)
+    add_paragraph(doc, "Выполнил: Колесников Андрей Юрьевич, 4 курс, группа БСБО-03-23, "
+                       "студенческий билет 23Б0099, номер по журналу 10", center=True, indent=False)
     add_paragraph(doc, "РТУ МИРЭА, Институт кибербезопасности и цифровых технологий",
                   center=True, indent=False)
 
@@ -200,7 +200,7 @@ def main():
         "user namespaces) недоступна и отмечена как среда, а не как дефект стенда.")
 
     out = os.path.join(BASE, "Отчет_Практика8.docx")
-    doc.save(out)
+    save_docx_and_pdf(doc, out)
     print(out)
 
 

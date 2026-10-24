@@ -9,6 +9,23 @@ from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Cm, Pt
 
+import os
+import subprocess
+
+
+SOFFICE = r"C:\Program Files\LibreOffice\program\soffice.exe"
+
+
+def save_docx_and_pdf(doc, docx_path):
+    """Сохраняет docx и конвертирует его в PDF рядом с исходником."""
+    doc.save(docx_path)
+    subprocess.run(
+        [SOFFICE, "--headless", "--convert-to", "pdf",
+         "--outdir", os.path.dirname(docx_path), docx_path],
+        check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+    )
+    return os.path.splitext(docx_path)[0] + ".pdf"
+
 
 def _set_font(run, size=12, bold=False):
     run.font.name = "Times New Roman"

@@ -14,7 +14,7 @@
 - `burp/` — конфигурация Burp, скриншот HTTP history, Dockerfile для запуска под Xvfb.
 - `SecureObjectInfo/` — защищённая страница на PHP 8.3 + PDO/SQLite.
 - `tests/test_object_info.py` — проверки защищённой страницы.
-- `Отчет_Практика5.docx` — отчёт.
+- `Отчет_Практика5.docx`, `Отчет_Практика5.pdf` — отчёт.
 
 ## 1. Поднять DVWA
 
@@ -158,7 +158,7 @@ python tests/test_object_info.py
 3. Открываю `burp/burp_history_selected_cropped.png`: в Burp `Proxy → HTTP history`, запросы с `1=1` (200) и `1=2` (404).
 4. Запускаю `tests/test_object_info.py`: пять `OK`.
 5. В браузере открываю `http://127.0.0.1:8082/object_info.php`, ввожу `testuser` / `Summer2024!`, показываю объект 2; в адресной строке после входа остаётся только `?id=2`.
-6. Открываю `Отчет_Практика5.docx` — таблицы находок, CWE и проверок.
+6. Открываю `Отчет_Практика5.docx` или PDF — таблицы находок, CWE и проверок.
 
 **Что говорю**
 

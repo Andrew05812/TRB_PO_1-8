@@ -15,7 +15,7 @@ vulnerability (CWE-134), но задание относится к модулю 
 - `scripts/gdb_session.txt` — сценарий gdb;
 - `scripts/find_offset.py`, `scripts/write_demo.py` — подбор смещения и запись;
 - `results/` — сохранённые выводы gdb и запусков;
-- `Отчет_Практика6.docx` — отчёт.
+- `Отчет_Практика6.docx`, `Отчет_Практика6.pdf` — отчёт.
 
 ## Сборка
 

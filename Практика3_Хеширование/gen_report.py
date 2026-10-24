@@ -8,7 +8,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "_tools"))
-from docx_helper import new_document, add_title, add_heading, add_paragraph, add_table
+from docx_helper import new_document, add_title, add_heading, add_paragraph, add_table, save_docx_and_pdf
 
 
 def read_csv(path):
@@ -38,7 +38,8 @@ def main():
     add_title(doc, "Отчёт по практике 3")
     add_title(doc, "Перебор паролей по хэшу: свой инструмент и сравнение с John the Ripper")
     add_paragraph(doc, "", indent=False)
-    add_paragraph(doc, "Выполнил: Колесников Андрей Юрьевич, группа БСБО-03-23, студенческий билет 23Б0099", center=True, indent=False)
+    add_paragraph(doc, "Выполнил: Колесников Андрей Юрьевич, 4 курс, группа БСБО-03-23, "
+                       "студенческий билет 23Б0099, номер по журналу 10", center=True, indent=False)
     add_paragraph(doc, "РТУ МИРЭА, Институт кибербезопасности и цифровых технологий", center=True, indent=False)
 
     add_heading(doc, "1. Цель работы")
@@ -370,7 +371,7 @@ def main():
         "пароли, что подтверждает корректность собственной программы.")
 
     out_path = "Отчет_Практика3.docx"
-    doc.save(out_path)
+    save_docx_and_pdf(doc, out_path)
     print("Сохранено:", out_path)
 
 

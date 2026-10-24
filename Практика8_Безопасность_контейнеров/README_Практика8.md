@@ -12,7 +12,7 @@
 - `scripts/render_terminal.py` — рисует PNG с выводами команд для отчёта;
 - `results/` — compose ps, inspect, Trivy (txt/json), Docker Bench;
 - `screenshots/` — страница сайта и скриншоты выводов;
-- `Отчет_Практика8.docx` — отчёт.
+- `Отчет_Практика8.docx`, `Отчет_Практика8.pdf` — отчёт.
 
 ## Запуск
 
@@ -111,7 +111,7 @@ curl.exe http://127.0.0.1:8088/
 2. Показываю `docker compose ps`: оба контейнера `healthy`, у web порт `127.0.0.1:8088`.
 3. В `docker-compose.yml` показываю том `p8_pgdata`, сеть `p8_backend`, `read_only`, `cap_drop`, `no-new-privileges`, лимиты.
 4. Делаю `docker compose restart`, обновляю страницу — счётчик вырос, данные на месте; затем `down` и `up` без `-v` — данные снова на месте.
-5. Открываю `Отчет_Практика8.docx`: скриншоты страницы, `compose ps`, Trivy, Docker Bench.
+5. Открываю `Отчет_Практика8.docx` или PDF: скриншоты страницы, `compose ps`, Trivy, Docker Bench.
 6. Показываю `results/trivy_web.txt` и `trivy_db.txt`, `results/docker_bench_clean.txt`.
 
 **Что говорю**
