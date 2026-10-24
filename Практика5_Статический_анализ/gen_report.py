@@ -198,6 +198,28 @@ def main():
         "Тест запускается командой python tests/test_object_info.py при поднятом "
         "контейнере p5-secure. Все пять проверок пройдены, код возврата 0.")
 
+    add_heading(doc, "7.1. Соответствие требованиям", level=2)
+    add_table(doc, ["Пункт задания", "Что сделано", "Где смотреть"], [
+        ["1. Найти SQL-инъекцию статическим анализатором",
+         "Semgrep, правила p/php; SonarQube как дополнительный контроль",
+         "раздел 3, semgrep_summary.txt"],
+        ["2. Проанализировать код и сделать кодревью",
+         "разобраны low, medium, blind; указана CWE-89",
+         "раздел 4, таблица слабостей"],
+        ["3. Своя система вывода объекта без SQL-инъекции",
+         "object_info.php на PDO, параметры, CSRF, rate limit",
+         "раздел 7, SecureObjectInfo"],
+        ["4. Использовать sqlmap",
+         "boolean-based blind, current db, дамп admin",
+         "раздел 5, sqlmap_blind.log и sqlmap_dump.log"],
+        ["5. Использовать Burp",
+         "запросы через proxy 8085, разница 200/404",
+         "раздел 6, burp_history_selected_cropped.png"],
+        ["GET-формат как в задании",
+         "username, password, user_token, Login, id",
+         "object_info.php?username=...&password=...&user_token=...&Login=Login&id=2"],
+    ])
+
     add_heading(doc, "8. Выводы")
     add_paragraph(doc,
         "Статический анализ нашёл SQL-инъекцию в двух местах DVWA и показал, что "

@@ -49,6 +49,21 @@ def main():
         ["CI", "GitLab CI, четыре стадии"],
     ])
 
+    add_heading(doc, "2.1. Соответствие требованиям", level=2)
+    add_table(doc, ["Требование задания", "Где реализовано", "Чем подтверждается"], [
+        ["Изолированные Docker-контейнеры",
+         "образы sdk/runtime, docker:24.0", "build/test/sast/deploy идут в контейнерах"],
+        ["Стадия build", "build_app", "dotnet restore + publish в Release"],
+        ["Стадия test с JUnit", "run_tests", "18 testcase, failures=0"],
+        ["Стадия SAST", "security_scan", "Semgrep, --severity ERROR --error"],
+        ["Стадия local deploy", "local_deploy", "docker build + docker run --selfcheck"],
+        ["Кэш зависимостей", "cache: .nuget/packages", "ключ nuget-cache"],
+        ["Артефакты между стадиями", "artifacts: publish/", "test забирает publish через dependencies"],
+        ["Multi-stage Dockerfile", "Dockerfile", "SDK остаётся только в builder"],
+        ["Непривилегированный пользователь", "USER appuser, uid 10001", "запуск образа"],
+        ["Секреты не в коде", "CI/CD variables, README", "в YAML токенов нет"],
+    ])
+
     add_heading(doc, "3. Dockerfile")
     add_paragraph(doc,
         "Dockerfile многоступенчатый. На первом этапе SDK восстанавливает зависимости "

@@ -89,6 +89,24 @@ def main():
     ]
     draw_terminal("trivy_summary.png", "Trivy: сканирование образов", lines)
 
+    with open(os.path.join(RESULTS, "volume.json"), encoding="utf-8") as f:
+        volume = json.load(f)[0]
+    with open(os.path.join(RESULTS, "network.json"), encoding="utf-8") as f:
+        network = json.load(f)[0]
+    lines = [
+        "$ docker volume ls",
+        "local   " + volume["Name"],
+        "$ docker volume inspect " + volume["Name"],
+        "  Driver: " + volume["Driver"],
+        "  Mountpoint: " + volume["Mountpoint"],
+        "$ docker network inspect " + network["Name"],
+        "  Driver: " + network["Driver"],
+        "  Scope: " + network["Scope"],
+    ]
+    for container in network.get("Containers", {}).values():
+        lines.append("  Container: %s  %s" % (container["Name"], container["IPv4Address"]))
+    draw_terminal("storage_network.png", "Постоянное хранение и сеть", lines)
+
     bench = open(os.path.join(RESULTS, "docker_bench_clean.txt"), encoding="utf-8").read().splitlines()
     p8 = []
     for line in bench:

@@ -94,6 +94,13 @@ def main():
         "обнулила базу — это ожидаемое поведение, но в отчёте важно не перепутать "
         "down и down -v.")
 
+    doc.add_picture(os.path.join(BASE, "screenshots", "storage_network.png"), width=Cm(16))
+    doc.paragraphs[-1].alignment = 1
+    add_paragraph(doc,
+        "Том p8_pgdata и сеть p8_backend: база и приложение находятся в одной "
+        "пользовательской bridge-сети, том смонтирован в /var/lib/postgresql/data.",
+        center=True, indent=False)
+
     add_heading(doc, "4. Настройки безопасности контейнеров")
     add_table(doc, ["Мера", "Где", "Зачем"], [
         ["Непривилегированный пользователь", "Dockerfile, USER 10001", "приложение не root"],
@@ -180,6 +187,31 @@ def main():
         "подписать образ (cosign/DCT), включить сканирование Trivy в CI с блокировкой "
         "по CRITICAL, использовать Docker secrets вместо .env, настроить AppArmor и "
         "централизованный сбор логов, ограничить исходящие соединения контейнера.")
+
+    add_heading(doc, "7.1. Соответствие требованиям", level=2)
+    add_table(doc, ["Пункт задания", "Что сделано", "Где смотреть"], [
+        ["Веб-сайт с базой данных",
+         "Flask + PostgreSQL, таблица objects",
+         "раздел 2, app/app.py, скриншот страницы"],
+        ["Постоянное хранение",
+         "именованный том p8_pgdata",
+         "раздел 3, storage_network.png, тест restart/down-up"],
+        ["Сетевое окружение",
+         "bridge-сеть p8_backend, порт только на 127.0.0.1",
+         "раздел 3, storage_network.png, docker compose ps"],
+        ["Проверка образа",
+         "Trivy: 175 находок web, 64 postgres",
+         "раздел 5, trivy_web.txt/trivy_db.txt"],
+        ["Проверка контейнера",
+         "Docker Bench: 117 проверок, score 3",
+         "раздел 6, docker_bench_clean.txt"],
+        ["Скриншоты и последовательность",
+         "страница, compose ps, том/сеть, Trivy, Bench",
+         "разделы 2, 3, 5, 6"],
+        ["Меры по исправлению",
+         "обновление баз, Flask/pip, CI-порог, secrets, AppArmor",
+         "раздел 7 и выводы"],
+    ])
 
     add_heading(doc, "8. Выводы")
     add_paragraph(doc,
