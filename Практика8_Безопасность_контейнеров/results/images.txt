@@ -1,0 +1,2 @@
+p8-web                          local           198MB
+postgres                        16-alpine       420MB

@@ -1,0 +1,16 @@
+[
+    {
+        "CreatedAt": "2026-10-24T01:25:09Z",
+        "Driver": "local",
+        "Labels": {
+            "com.docker.compose.config-hash": "bcc28210a4c5d7ef8cfa3e67cc73a6b2c54476302cd39fd850e9b250da29f344",
+            "com.docker.compose.project": "8__",
+            "com.docker.compose.version": "5.5.1",
+            "com.docker.compose.volume": "p8_pgdata"
+        },
+        "Mountpoint": "/var/lib/docker/volumes/p8_pgdata/_data",
+        "Name": "p8_pgdata",
+        "Options": null,
+        "Scope": "local"
+    }
+]

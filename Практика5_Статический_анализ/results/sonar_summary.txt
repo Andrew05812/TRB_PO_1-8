@@ -1,0 +1,7 @@
+SonarQube Community 26.10, проект dvwa-p5
+Профиль PHP: Sonar way comprehensive (176 активных правил)
+Проанализировано: 3 файла PHP, 40 строк кода
+Найдено: 0 issues
+Причина: в бесплатной сборке нет taint-анализа для PHP;
+правило php:S2077 не размечает конкатенацию $_REQUEST в mysqli_query.
+Основной SAST в работе - Semgrep, SonarQube использован как дополнительный контроль.

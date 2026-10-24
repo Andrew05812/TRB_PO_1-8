@@ -1,0 +1,50 @@
+0:00:00:00 Starting a new session
+0:00:00:00 Loaded a total of 4 password hashes with no different salts
+0:00:00:00 Cost 1 (t) is 3 for all loaded hashes
+0:00:00:00 Cost 2 (m) is 65536 for all loaded hashes
+0:00:00:00 Cost 3 (p) is 2 for all loaded hashes
+0:00:00:00 Cost 4 (type [0:Argon2d 1:Argon2i 2:Argon2id]) is 2 for all loaded hashes
+0:00:00:00 Command line: ./john --format=argon2 --wordlist=/data/wordlist.txt --pot=/data/john/pot/argon2.pot --session=/data/john/pot/argon2 /data/john/hashes_argon2.txt 
+0:00:00:00 - UTF-8 input encoding enabled
+0:00:00:00 - Passwords will be stored UTF-8 encoded in .pot file
+0:00:00:00 - Hash type: Argon2 (min-len 0, max-len 106 [worst case UTF-8] to 319 [ASCII])
+0:00:00:00 - Algorithm: BlaMka 256/256 AVX2
+0:00:00:00 - Will reject candidates longer than 319 bytes
+0:00:00:00 - Candidate passwords will be buffered and tried in chunks of 16
+0:00:00:00 Proceeding with wordlist mode
+0:00:00:00 - Wordlist file: /data/wordlist.txt
+0:00:00:00 - Memory mapping wordlist (1863 bytes)
+0:00:00:00 - No word mangling rules
+0:00:00:00 - No stacked rules
+0:00:00:08 + Cracked ?
+0:00:00:08 Failed to use huge pages (not pre-allocated via sysctl? that's fine)
+0:00:00:13 + Cracked ?
+0:00:00:13 + Cracked ?
+0:00:00:19 Passwords tested: 241 (all time)
+0:00:00:19  dupe suppressor: 0 accepted, 0 rejected out of total 0 (while active during this run)
+0:00:00:19 Session completed
+0:00:00:00 Starting a new session
+0:00:00:00 Loaded a total of 4 password hashes with no different salts
+0:00:00:00 Cost 1 (t) is 3 for all loaded hashes
+0:00:00:00 Cost 2 (m) is 65536 for all loaded hashes
+0:00:00:00 Cost 3 (p) is 2 for all loaded hashes
+0:00:00:00 Cost 4 (type [0:Argon2d 1:Argon2i 2:Argon2id]) is 2 for all loaded hashes
+0:00:00:00 Command line: ./john --format=argon2 --wordlist=/data/wordlist.txt --pot=/data/john/pot/argon2.pot --session=/data/john/pot/argon2 /data/john/hashes_argon2.txt 
+0:00:00:00 - UTF-8 input encoding enabled
+0:00:00:00 - Passwords will be stored UTF-8 encoded in .pot file
+0:00:00:00 - Hash type: Argon2 (min-len 0, max-len 106 [worst case UTF-8] to 319 [ASCII])
+0:00:00:00 - Algorithm: BlaMka 256/256 AVX2
+0:00:00:00 - Will reject candidates longer than 319 bytes
+0:00:00:00 - Candidate passwords will be buffered and tried in chunks of 16
+0:00:00:00 Proceeding with wordlist mode
+0:00:00:00 - Wordlist file: /data/wordlist.txt
+0:00:00:00 - Memory mapping wordlist (1863 bytes)
+0:00:00:00 - No word mangling rules
+0:00:00:00 - No stacked rules
+0:00:00:02 + Cracked ?
+0:00:00:02 Failed to use huge pages (not pre-allocated via sysctl? that's fine)
+0:00:00:07 + Cracked ?
+0:00:00:07 + Cracked ?
+0:00:00:13 Passwords tested: 241 (all time)
+0:00:00:13  dupe suppressor: 0 accepted, 0 rejected out of total 0 (while active during this run)
+0:00:00:13 Session completed

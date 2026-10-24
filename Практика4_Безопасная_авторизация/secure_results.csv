@@ -1,0 +1,2 @@
+﻿target,username,attempts,found,password,elapsed_seconds,status
+http://127.0.0.1:8080/login.php,testuser,6,0,,6.216,locked_out

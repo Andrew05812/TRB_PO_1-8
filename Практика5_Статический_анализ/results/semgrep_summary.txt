@@ -1,0 +1,7 @@
+dvwa/sqli/low.php:8  ERROR  php.lang.security.injection.tainted-sql-string.tainted-sql-string
+  CWE: CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+  User data flows into this manually-constructed SQL string. User data can be safely inserted into SQL strings using prepared statements or an object-relational mapper (ORM). Manually-constructed SQL strings is a possible indicator of SQL injection, which could let an attacker steal or manipulate data from the database. Instead, use prepared statements (`$mysqli->prepare("INSERT INTO test(id, label) VALUES (?, ?)");`) or a safe library.
+
+dvwa/sqli_blind/low.php:8  ERROR  php.lang.security.injection.tainted-sql-string.tainted-sql-string
+  CWE: CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')
+  User data flows into this manually-constructed SQL string. User data can be safely inserted into SQL strings using prepared statements or an object-relational mapper (ORM). Manually-constructed SQL strings is a possible indicator of SQL injection, which could let an attacker steal or manipulate data from the database. Instead, use prepared statements (`$mysqli->prepare("INSERT INTO test(id, label) VALUES (?, ?)");`) or a safe library.

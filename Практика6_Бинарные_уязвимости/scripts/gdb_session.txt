@@ -1,0 +1,28 @@
+set pagination off
+set confirm off
+set disassembly-flavor intel
+
+file build/vuln
+
+# Точка останова прямо перед вызовом printf: в esp уже лежит указатель
+# на строку формата (аргумент только что положен push eax).
+break *main+92
+run "AAAA"
+
+printf "\n=== остановка перед printf, аргумент AAAA ===\n"
+info registers eax esp ebp
+printf "\n-- вершина стека: аргумент printf --\n"
+x/4wx $esp
+printf "-- строка формата --\n"
+x/s *(char **)$esp
+printf "\n-- буфер buffer (ebp-0x3c), туда прочитан файл --\n"
+x/40bx $ebp-0x3c
+x/s $ebp-0x3c
+printf "\n-- указатель FILE* secret (ebp-0x1c) --\n"
+x/wx $ebp-0x1c
+
+# Второй запуск: проверяем, что спецификаторы формата работают как команды.
+run "%p.%p.%p.%p.%p.%p.%p.%p"
+printf "\n=== остановка перед printf, аргумент с %%%%p ===\n"
+x/s *(char **)$esp
+continue

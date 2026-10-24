@@ -1,0 +1,12 @@
+Using default input encoding: UTF-8
+Loaded 4 password hashes with 4 different salts (bcrypt [Blowfish 32/64 X3])
+Cost 1 (iteration count) is 1024 for all loaded hashes
+Will run 16 OpenMP threads
+Note: Passwords longer than 24 [worst case UTF-8] to 72 [ASCII] truncated (property of the hash)
+Press Ctrl-C to abort, or send SIGUSR1 to john process for status
+apple[0m            (?[0m)     
+123456[0m           (?[0m)     
+Create[0m           (?[0m)     
+3g 0:00:00:04 DONE (2026-10-23 23:46) 0.6211g/s 49.90p/s 139.3c/s 139.3C/s sunshine123..2026
+Use the "--show" option to display all of the cracked passwords reliably
+Session '/data/john/pot/bcrypt' completed

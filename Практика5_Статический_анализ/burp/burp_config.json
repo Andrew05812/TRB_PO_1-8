@@ -1,0 +1,11 @@
+{
+  "proxy": {
+    "request_listeners": [
+      {
+        "listen_mode": "all_interfaces",
+        "listener_port": 8085,
+        "running": true
+      }
+    ]
+  }
+}

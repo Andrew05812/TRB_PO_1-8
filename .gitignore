@@ -1,0 +1,8 @@
+**/bin/
+**/obj/
+**/__pycache__/
+*.pyc
+**/.env
+**/data/
+*.tar
+Практика1_Файловый_менеджер/FileManagerApp/filemanager.db

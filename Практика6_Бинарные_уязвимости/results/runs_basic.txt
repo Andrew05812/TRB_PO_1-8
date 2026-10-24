@@ -1,0 +1,7 @@
+--- normal ---
+hello
+--- leak ---
+ARGV=0x20 argv2=0x98b41a0 stack3=0x804919e stack4=0xf7f1cff4 stack5=0x2c stack6=(nil) stack7=0x52434553 stack8=0x667b5445
+--- fixed with percent ---
+ARGV=%p argv2=%p %n
+exit=0

@@ -1,0 +1,19 @@
+﻿algorithm,category,attack,hash,password,found,found_position,elapsed_seconds,candidates_tried,hashes_per_second,workers
+SHA-1,лёгкий,dict,7c4a8d09ca3762af61e59520943dc26494f8941b,123456,1,1,0.3614,241,666.8,8
+SHA-1,средний,dict,d0be2dc421be4fcd0172e5afceea3970e2f3d940,apple,1,103,0.3211,241,750.6,8
+SHA-1,сложный,dict,666846867fc5e0a46a7afc53eb8060967862f333,,0,0,0.3175,241,759.0,8
+SHA-1,очень сложный,dict,6e157c5da4410b7e9de85f5c93026b9176e69064,Create,1,104,0.3066,241,786.2,8
+MD5,лёгкий,dict,e10adc3949ba59abbe56e057f20f883e,123456,1,1,0.2993,241,805.1,8
+MD5,средний,dict,1f3870be274f6c49b3e31a0c6728957f,apple,1,103,0.3225,241,747.3,8
+MD5,сложный,dict,77892341aa9dc66e97f5c248782b5d92,,0,0,0.3304,241,729.5,8
+MD5,очень сложный,dict,686e697538050e4664636337cc3b834f,Create,1,104,0.3396,241,709.6,8
+bcrypt,лёгкий,dict,$2a$10$z4u9ZkvopUiiytaNX7wfGedy9Lu2ywUxwYpbsAR5YBrAuUs3YGXdi,123456,1,1,0.5686,16,28.1,8
+bcrypt,средний,dict,$2a$10$26GB/T2/6aTsMkTjCgqm/.JP8SUjr32Bhfn9m9smtDiIwM4QIt2ze,apple,1,103,1.3045,16,12.3,8
+bcrypt,сложный,dict,$2a$10$Q9M0vLLrE4/nu/9JEMXFTewB3Yr9uMdIEZ1Sgdk1NQTjHwLN0asfi,,0,0,4.2925,241,56.1,8
+bcrypt,очень сложный,dict,$2a$10$yZBadi8Szw0nItV2g96P6eqctI2kbG/.mb0uD/ID9tlof0zpJLLL2,Create,1,104,1.4344,16,11.2,8
+Argon2id,лёгкий,dict,"$argon2id$v=19$m=65536,t=3,p=2$c2FsdHNhbHQ$PUF5UxxoUY++mMekkQwFurL0ZsTtB7lelO23zcyZQ0c",123456,1,1,0.8873,8,9.0,8
+Argon2id,средний,dict,"$argon2id$v=19$m=65536,t=3,p=2$c2FsdHNhbHQ$HYQwRUw9VcfkvqkUQ5ppyYPom6f/ro3ZCXYznhrYZw4",apple,1,103,8.3973,72,8.6,8
+Argon2id,сложный,dict,"$argon2id$v=19$m=65536,t=3,p=2$c2FsdHNhbHQ$9asGA7Xv3vQBz7Yyh4/Ntw0GQgOg8R6OWolOfRETrEg",,0,0,14.7056,241,16.4,8
+Argon2id,очень сложный,dict,"$argon2id$v=19$m=65536,t=3,p=2$c2FsdHNhbHQ$+smq45/czydGj0lYNdZVXF++FOXJwrkXt6VUIcEauvo",Create,1,104,7.7964,104,13.3,8
+SHA-1,лёгкий,mask ?d?d?d?d?d?d,7c4a8d09ca3762af61e59520943dc26494f8941b,123456,1,123457,0.8403,100000,119001.9,8
+MD5,лёгкий,mask ?d?d?d?d?d?d,e10adc3949ba59abbe56e057f20f883e,123456,1,123457,0.7687,100000,130088.2,8

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Объекты — практика 8</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<main>
+    <h1>Учёт объектов</h1>
+    <p class="muted">Данные читаются из PostgreSQL. Всего просмотров: {{ visits }}.</p>
+
+    <table>
+        <thead>
+        <tr><th>№</th><th>Название</th><th>Владелец</th><th>Создан</th></tr>
+        </thead>
+        <tbody>
+        {% for row in objects %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3].strftime('%d.%m.%Y %H:%M') }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <p class="muted">Страница работает в контейнере от пользователя appuser (uid 10001).</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,116 @@
+# Локальный CI/CD конвейер для FileManagerApp (Практика 1).
+# Рассчитан на запуск через gitlab-runner в Docker-executor на локальной машине
+# (см. README_Практика2.md - как поднять раннер локально и прогнать конвейер).
+
+stages:
+  - build
+  - test
+  - sast
+  - deploy
+
+variables:
+  DOCKER_DRIVER: overlay2
+  # Без этих двух переменных docker CLI в джобе local_deploy ищет сокет
+  # /var/run/docker.sock, которого внутри контейнера нет, и не может
+  # подключиться к демону из сервиса docker:24.0-dind. Для локального
+  # стенда TLS не включаем - наружу порт не публикуется.
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+  APP_DIR: "Практика1_Файловый_менеджер/FileManagerApp"
+
+# ---------------------------------------------------------------------------
+# 1. Сборка. Компилируем консольное приложение внутри контейнера с SDK -
+#    на хосте у разработчика может вообще не быть установлен .NET,
+#    и это не должно влиять на результат сборки.
+# ---------------------------------------------------------------------------
+build_app:
+  stage: build
+  image: mcr.microsoft.com/dotnet/sdk:8.0
+  cache:
+    key: nuget-cache
+    paths:
+      - .nuget/packages/
+  script:
+    - export NUGET_PACKAGES="$CI_PROJECT_DIR/.nuget/packages"
+    - cd "$APP_DIR"
+    - dotnet restore
+    - dotnet publish -c Release -o "$CI_PROJECT_DIR/publish"
+  artifacts:
+    paths:
+      - publish/
+    expire_in: 1 day
+
+# ---------------------------------------------------------------------------
+# 2. Тесты. У проекта нет отдельного тестового фреймворка (xUnit и т.п.
+#    сюда специально не тащили, чтобы не плодить лишние зависимости) -
+#    вместо этого в сам FileManagerApp встроен режим --selfcheck,
+#    который прогоняет все модули (БД, файлы, json/xml, zip) на временных
+#    данных и падает с ненулевым кодом, если что-то не так.
+#    Результат оборачиваем в простой JUnit-отчёт, чтобы GitLab показывал
+#    его во вкладке Tests, как требуется в задании.
+# ---------------------------------------------------------------------------
+run_tests:
+  stage: test
+  image: mcr.microsoft.com/dotnet/sdk:8.0
+  dependencies:
+    - build_app
+  script:
+    - cd publish
+    - bash "$CI_PROJECT_DIR/Практика2_CI_CD/scripts/run_selfcheck_as_junit.sh" FileManagerApp.dll "$CI_PROJECT_DIR/test-results.xml"
+  artifacts:
+    when: always
+    reports:
+      junit: test-results.xml
+
+# ---------------------------------------------------------------------------
+# 3. SAST. Semgrep сканирует исходники на типовые уязвимости
+#    (SQL-инъекции, небезопасная десериализация и т.д.) и роняет джобу,
+#    если находит проблему уровня error - именно это и прерывает конвейер.
+# ---------------------------------------------------------------------------
+security_scan:
+  stage: sast
+  image: semgrep/semgrep
+  # У образа semgrep точкой входа является сам semgrep, поэтому без сброса
+  # entrypoint GitLab передал бы "cd ..." как аргументы semgrep. Пустой
+  # entrypoint заставляет раннер выполнять обычный shell-скрипт.
+  entrypoint: [""]
+  script:
+    # Semgrep не принимает путь с кириллицей как корень сканирования
+    # ("Invalid scanning root"), поэтому заходим в папку приложения и
+    # сканируем текущий каталог - для него путь уже не важен.
+    - cd "$APP_DIR"
+    # ERROR у Semgrep - это примерно High/Critical. Более мягкие
+    # предупреждения конвейер не роняют, как и сказано в задании.
+    - semgrep scan --config auto --severity ERROR --error --exclude bin --exclude obj .
+
+# ---------------------------------------------------------------------------
+# 4. Локальный деплой. Собираем финальный Docker-образ по Dockerfile'у
+#    из этой же папки и запускаем контейнер - проверяем, что он реально
+#    стартует и ждёт ввода (приложение консольное, без HTTP-порта,
+#    поэтому порт не пробрасываем, просто смотрим код возврата).
+# ---------------------------------------------------------------------------
+local_deploy:
+  stage: deploy
+  image: docker:24.0
+  services:
+    - docker:24.0-dind
+  # Примечание из методички: привилегированный dind и проброс docker-сокета
+  # допустимы только на локальной машине разработчика, не в продакшене -
+  # полный контроль над хостом, если сокет утечёт наружу.
+  #
+  # Порт не пробрасываем: FileManagerApp - консольное приложение, HTTP-
+  # сервера у него нет. Вместо проверки порта запускаем --selfcheck и
+  # смотрим на код возврата. Для веб-приложения здесь было бы
+  # "docker run -d -p 8080:8080 ...".
+  #
+  # Токены и пароли в этом файле не хранятся. Если понадобится приватный
+  # registry, логин/пароль задаются в Settings -> CI/CD -> Variables
+  # (Masked, Protected) и подставляются как $CI_REGISTRY_USER и
+  # $CI_REGISTRY_PASSWORD; локально - через переменные окружения.
+  script:
+    - docker build -t filemanagerapp:local -f Практика2_CI_CD/Dockerfile .
+    - docker run --rm filemanagerapp:local --selfcheck
+  rules:
+    # Ветка по умолчанию может называться и main, и master -
+    # деплой должен отрабатывать в обоих случаях.
+    - if: '$CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master"'

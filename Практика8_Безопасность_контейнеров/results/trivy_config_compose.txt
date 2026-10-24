@@ -1,0 +1,16 @@
+2026-10-24T01:45:20Z	INFO	[misconfig] Misconfiguration scanning is enabled
+2026-10-24T01:45:20Z	INFO	[checks-client] Using existing checks from cache	path="/root/.cache/trivy/policy/content"
+2026-10-24T01:45:33Z	INFO	Detected config files	num=0
+2026-10-24T01:45:33Z	WARN	[report] Supported files for scanner(s) not found.	scanners=[misconfig]
+
+Report Summary
+
+┌────────┬──────┬───────────────────┐
+│ Target │ Type │ Misconfigurations │
+├────────┼──────┼───────────────────┤
+│   -    │  -   │         -         │
+└────────┴──────┴───────────────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+

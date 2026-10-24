@@ -1,0 +1,3 @@
+NAME      IMAGE                COMMAND                  SERVICE   CREATED          STATUS                    PORTS
+p8-db     postgres:16-alpine   "docker-entrypoint.s…"   db        15 minutes ago   Up 15 minutes (healthy)   5432/tcp
+p8-web    p8-web:local         "gunicorn --bind 0.0…"   web       2 minutes ago    Up 2 minutes (healthy)    127.0.0.1:8088->8080/tcp

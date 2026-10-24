@@ -1,0 +1,11 @@
+Using default input encoding: UTF-8
+Loaded 4 password hashes with no different salts (Raw-SHA1 [SHA1 256/256 AVX2 8x])
+Warning: no OpenMP support for this hash type, consider --fork=16
+Note: Passwords longer than 18 [worst case UTF-8] to 55 [ASCII] rejected
+Press Ctrl-C to abort, or send SIGUSR1 to john process for status
+123456[0m           (?[0m)     
+apple[0m            (?[0m)     
+Create[0m           (?[0m)     
+3g 0:00:00:00 DONE (2026-10-23 23:46) 12.00g/s 964.0p/s 964.0c/s 2500C/s zaq1zaq1..2026
+Use the "--show --format=Raw-SHA1" options to display all of the cracked passwords reliably
+Session '/data/john/pot/sha1' completed

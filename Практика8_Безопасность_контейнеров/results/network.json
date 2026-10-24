@@ -1,0 +1,64 @@
+[
+    {
+        "Name": "p8_backend",
+        "Id": "5189e66eafb836d52ed042686069b1d9338f6aa733a4a7efb452cbc3454b0ff5",
+        "Created": "2026-10-24T01:26:04.276598406Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "172.19.0.0/16",
+                    "Gateway": "172.19.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Options": {
+            "com.docker.network.enable_ipv4": "true",
+            "com.docker.network.enable_ipv6": "false"
+        },
+        "Labels": {
+            "com.docker.compose.config-hash": "40cecd034abe54ec1bb6e377fa6057d9f235294d50c9531396bde2f2b9828c72",
+            "com.docker.compose.network": "p8_backend",
+            "com.docker.compose.project": "8__",
+            "com.docker.compose.version": "5.5.1"
+        },
+        "Containers": {
+            "0dc4d487e9022d34e6f558d1053ce637ff943f6620f195d164af39514bd14e34": {
+                "Name": "p8-db",
+                "EndpointID": "1bd155a6db951dad9a452a1a6be529bbfc8043e7d354af62f96b09c6d0cf77c4",
+                "MacAddress": "da:15:54:18:92:e7",
+                "IPv4Address": "172.19.0.2/16",
+                "IPv6Address": ""
+            },
+            "bac028e5338f26045d73dbafa2c80f3a410b07d207b602f33132dd319f180593": {
+                "Name": "p8-web",
+                "EndpointID": "ed4c081e7f4c4eba6d5b12b8e1bf7a54aa6b5490dea92d274190fb2de4fa586b",
+                "MacAddress": "9e:40:44:ee:3b:77",
+                "IPv4Address": "172.19.0.3/16",
+                "IPv6Address": ""
+            }
+        },
+        "Status": {
+            "IPAM": {
+                "Subnets": {
+                    "172.19.0.0/16": {
+                        "IPsInUse": 5,
+                        "DynamicIPsAvailable": 65531
+                    }
+                }
+            }
+        }
+    }
+]

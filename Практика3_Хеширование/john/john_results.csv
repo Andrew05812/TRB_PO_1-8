@@ -1,0 +1,5 @@
+algorithm,format,hashes,cracked,elapsed_seconds,docker_wall_seconds,threads,cracked_list
+SHA-1,Raw-SHA1,4,3,0.000,2.555,1,123456;apple;Create
+MD5,Raw-MD5,4,3,0.000,2.550,1,123456;apple;Create
+bcrypt,bcrypt,4,3,4.000,7.358,16,123456;apple;Create
+Argon2id,argon2,4,3,13.000,16.737,16,123456;apple;Create

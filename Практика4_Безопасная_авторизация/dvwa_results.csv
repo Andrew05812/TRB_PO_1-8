@@ -1,0 +1,2 @@
+﻿target,username,attempts,found,password,elapsed_seconds,status
+http://127.0.0.1:8081/vulnerabilities/brute/,admin,20,1,Summer2024!,28.417,found

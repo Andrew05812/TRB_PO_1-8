@@ -1,0 +1,21 @@
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 3 files tracked by git with 24 Code rules:
+  Scanning 3 files with 23 php rules.
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 2 (2 blocking)
+ • Rules run: 23
+ • Targets scanned: 3
+ • Parsed lines: ~100.0%
+ • No ignore information available
+Ran 23 rules on 3 files: 2 findings.
+
+A new version of Semgrep is available. See https://semgrep.dev/docs/upgrading

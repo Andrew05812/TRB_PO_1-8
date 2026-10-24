@@ -1,0 +1,53 @@
+Dump of assembler code for function main:
+   0x08049186 <+0>:	lea    ecx,[esp+0x4]
+   0x0804918a <+4>:	and    esp,0xfffffff0
+   0x0804918d <+7>:	push   DWORD PTR [ecx-0x4]
+   0x08049190 <+10>:	push   ebp
+   0x08049191 <+11>:	mov    ebp,esp
+   0x08049193 <+13>:	push   esi
+   0x08049194 <+14>:	push   ebx
+   0x08049195 <+15>:	push   ecx
+   0x08049196 <+16>:	sub    esp,0x3c
+   0x08049199 <+19>:	call   0x80490c0 <__x86.get_pc_thunk.bx>
+   0x0804919e <+24>:	add    ebx,0x2e56
+   0x080491a4 <+30>:	mov    esi,ecx
+   0x080491a6 <+32>:	sub    esp,0x8
+   0x080491a9 <+35>:	lea    eax,[ebx-0x1fec]
+   0x080491af <+41>:	push   eax
+   0x080491b0 <+42>:	lea    eax,[ebx-0x1fe8]
+   0x080491b6 <+48>:	push   eax
+   0x080491b7 <+49>:	call   0x8049070 <fopen@plt>
+   0x080491bc <+54>:	add    esp,0x10
+   0x080491bf <+57>:	mov    DWORD PTR [ebp-0x1c],eax
+   0x080491c2 <+60>:	sub    esp,0x4
+   0x080491c5 <+63>:	push   DWORD PTR [ebp-0x1c]
+   0x080491c8 <+66>:	push   0x20
+   0x080491ca <+68>:	lea    eax,[ebp-0x3c]
+   0x080491cd <+71>:	push   eax
+   0x080491ce <+72>:	call   0x8049050 <fgets@plt>
+   0x080491d3 <+77>:	add    esp,0x10
+   0x080491d6 <+80>:	mov    eax,DWORD PTR [esi+0x4]
+   0x080491d9 <+83>:	add    eax,0x4
+   0x080491dc <+86>:	mov    eax,DWORD PTR [eax]
+   0x080491de <+88>:	sub    esp,0xc
+   0x080491e1 <+91>:	push   eax
+   0x080491e2 <+92>:	call   0x8049040 <printf@plt>
+   0x080491e7 <+97>:	add    esp,0x10
+   0x080491ea <+100>:	sub    esp,0xc
+   0x080491ed <+103>:	push   DWORD PTR [ebp-0x1c]
+   0x080491f0 <+106>:	call   0x8049060 <fclose@plt>
+   0x080491f5 <+111>:	add    esp,0x10
+   0x080491f8 <+114>:	mov    eax,0x0
+   0x080491fd <+119>:	lea    esp,[ebp-0xc]
+   0x08049200 <+122>:	pop    ecx
+   0x08049201 <+123>:	pop    ebx
+   0x08049202 <+124>:	pop    esi
+   0x08049203 <+125>:	pop    ebp
+   0x08049204 <+126>:	lea    esp,[ecx-0x4]
+   0x08049207 <+129>:	ret
+End of assembler dump.
+All functions matching regular expression "printf":
+
+Non-debugging symbols:
+0x08049040  printf@plt
+No symbol "target" in current context.

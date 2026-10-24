@@ -1,0 +1,42 @@
+0:00:00:00 Starting a new session
+0:00:00:00 Loaded a total of 4 password hashes with 4 different salts
+0:00:00:00 Sorting salts, for deterministic salt-resume
+0:00:00:00 Cost 1 (iteration count) is 1024 for all loaded hashes
+0:00:00:00 Command line: ./john --format=bcrypt --wordlist=/data/wordlist.txt --pot=/data/john/pot/bcrypt.pot --session=/data/john/pot/bcrypt /data/john/hashes_bcrypt.txt 
+0:00:00:00 - UTF-8 input encoding enabled
+0:00:00:00 - Passwords will be stored UTF-8 encoded in .pot file
+0:00:00:00 - Hash type: bcrypt (min-len 0, max-len 24 [worst case UTF-8] to 72 [ASCII])
+0:00:00:00 - Algorithm: Blowfish 32/64 X3
+0:00:00:00 - Candidate passwords will be buffered and tried in chunks of 144
+0:00:00:00 Proceeding with wordlist mode
+0:00:00:00 - Wordlist file: /data/wordlist.txt
+0:00:00:00 - Memory mapping wordlist (1863 bytes)
+0:00:00:00 - No word mangling rules
+0:00:00:00 - No stacked rules
+0:00:00:01 + Cracked ?
+0:00:00:02 + Cracked ?
+0:00:00:03 + Cracked ?
+0:00:00:05 Passwords tested: 241 (all time)
+0:00:00:05  dupe suppressor: 0 accepted, 0 rejected out of total 0 (while active during this run)
+0:00:00:05 Session completed
+0:00:00:00 Starting a new session
+0:00:00:00 Loaded a total of 4 password hashes with 4 different salts
+0:00:00:00 Sorting salts, for deterministic salt-resume
+0:00:00:00 Cost 1 (iteration count) is 1024 for all loaded hashes
+0:00:00:00 Command line: ./john --format=bcrypt --wordlist=/data/wordlist.txt --pot=/data/john/pot/bcrypt.pot --session=/data/john/pot/bcrypt /data/john/hashes_bcrypt.txt 
+0:00:00:00 - UTF-8 input encoding enabled
+0:00:00:00 - Passwords will be stored UTF-8 encoded in .pot file
+0:00:00:00 - Hash type: bcrypt (min-len 0, max-len 24 [worst case UTF-8] to 72 [ASCII])
+0:00:00:00 - Algorithm: Blowfish 32/64 X3
+0:00:00:00 - Candidate passwords will be buffered and tried in chunks of 144
+0:00:00:00 Proceeding with wordlist mode
+0:00:00:00 - Wordlist file: /data/wordlist.txt
+0:00:00:00 - Memory mapping wordlist (1863 bytes)
+0:00:00:00 - No word mangling rules
+0:00:00:00 - No stacked rules
+0:00:00:01 + Cracked ?
+0:00:00:02 + Cracked ?
+0:00:00:03 + Cracked ?
+0:00:00:04 Passwords tested: 241 (all time)
+0:00:00:04  dupe suppressor: 0 accepted, 0 rejected out of total 0 (while active during this run)
+0:00:00:04 Session completed

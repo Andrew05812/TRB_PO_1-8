@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <!-- Отключил implicit usings и nullable - привык писать using руками,
+         так понятнее откуда что берётся -->
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <RootNamespace>FileManagerApp</RootNamespace>
+    <AssemblyName>FileManagerApp</AssemblyName>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!-- Внешних NuGet-пакетов нет специально: для SQLite используем
+       встроенную в систему libsqlite3 через P/Invoke (см. SqliteNative.cs),
+       JSON/XML/ZIP/хэширование - всё из стандартной библиотеки .NET -->
+
+</Project>

@@ -1,0 +1,49 @@
+:root {
+    color-scheme: light;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: #eef2f5;
+    color: #1f2933;
+}
+
+main {
+    max-width: 900px;
+    margin: 48px auto;
+    padding: 32px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(20, 40, 60, 0.08);
+}
+
+h1 {
+    margin-top: 0;
+    font-size: 28px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+}
+
+th, td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #dfe6ec;
+    text-align: left;
+}
+
+th {
+    background: #f6f9fb;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #52606d;
+}
+
+.muted {
+    color: #6b7785;
+    font-size: 14px;
+}

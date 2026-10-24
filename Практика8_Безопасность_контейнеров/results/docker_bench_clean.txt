@@ -1,0 +1,389 @@
+# --------------------------------------------------------------------------------------------
+# Docker Bench for Security v1.6.0
+#
+# Docker, Inc. (c) 2015-2026
+#
+# Checks for dozens of common best-practices around deploying Docker containers in production.
+# Based on the CIS Docker Benchmark 1.6.0.
+# --------------------------------------------------------------------------------------------
+
+[WARN] Some tests might require root to run
+
+Initializing 2026-10-24T04:52:35+03:00
+
+
+Section A - Check results
+./functions/helper_lib.sh: line 56: pgrep: command not found
+error: no such object: 13MB
+error: no such object: 264MB
+error: no such object: 398MB
+error: no such object: 728MB
+error: no such object: 116MB
+error: no such object: 69.2MB
+error: no such object: 461MB
+error: no such object: 288MB
+error: no such object: 964MB
+error: no such object: 418MB
+error: no such object: 2.09GB
+error: no such object: 198MB
+error: no such object: 1.04GB
+error: no such object: 750MB
+error: no such object: 1.54GB
+error: no such object: 420MB
+error: no such object: 179MB
+error: no such object: 1.55GB
+error: no such object: 2.55GB
+error: no such object: 1.44GB
+error: no such object: 935MB
+
+[INFO] 1 - Host Configuration
+[INFO] 1.1 - Linux Hosts Specific Configuration
+[WARN] 1.1.1 - Ensure a separate partition for containers has been created (Automated)
+grep: /etc/group: No such file or directory
+[INFO] 1.1.2 - Ensure only trusted users are allowed to control Docker daemon (Automated)
+[INFO]       * Users: 
+[WARN] 1.1.3 - Ensure auditing is configured for the Docker daemon (Automated)
+[WARN] 1.1.4 - Ensure auditing is configured for Docker files and directories -/run/containerd (Automated)
+[INFO] 1.1.5 - Ensure auditing is configured for Docker files and directories - /var/lib/docker (Automated)
+[INFO]        * Directory not found
+[INFO] 1.1.6 - Ensure auditing is configured for Docker files and directories - /etc/docker (Automated)
+[INFO]        * Directory not found
+./functions/helper_lib.sh: line 147: systemctl: command not found
+./functions/helper_lib.sh: line 147: systemctl: command not found
+[INFO] 1.1.7 - Ensure auditing is configured for Docker files and directories - docker.service (Automated)
+[INFO]        * File not found
+./functions/helper_lib.sh: line 147: systemctl: command not found
+./functions/helper_lib.sh: line 147: systemctl: command not found
+[INFO] 1.1.8 - Ensure auditing is configured for Docker files and directories - containerd.sock (Automated)
+[INFO]        * File not found
+./functions/helper_lib.sh: line 147: systemctl: command not found
+./functions/helper_lib.sh: line 147: systemctl: command not found
+[INFO] 1.1.9 - Ensure auditing is configured for Docker files and directories - docker.socket (Automated)
+[INFO]        * File not found
+[INFO] 1.1.10 - Ensure auditing is configured for Docker files and directories - /etc/default/docker (Automated)
+[INFO]        * File not found
+[INFO] 1.1.11 - Ensure auditing is configured for Dockerfiles and directories - /etc/docker/daemon.json (Automated)
+[INFO]        * File not found
+[INFO] 1.1.12 - 1.1.12 Ensure auditing is configured for Dockerfiles and directories - /etc/containerd/config.toml (Automated)
+[INFO]        * File not found
+[INFO] 1.1.13 - Ensure auditing is configured for Docker files and directories - /etc/sysconfig/docker (Automated)
+[INFO]        * File not found
+[INFO] 1.1.14 - Ensure auditing is configured for Docker files and directories - /usr/bin/containerd (Automated)
+[INFO]         * File not found
+[INFO] 1.1.15 - Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim (Automated)
+[INFO]         * File not found
+[INFO] 1.1.16 - Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim-runc-v1 (Automated)
+[INFO]         * File not found
+[INFO] 1.1.17 - Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim-runc-v2 (Automated)
+[INFO]         * File not found
+[INFO] 1.1.18 - Ensure auditing is configured for Docker files and directories - /usr/bin/runc (Automated)
+[INFO]         * File not found
+[INFO] 1.2 - General Configuration
+[NOTE] 1.2.1 - Ensure the container host has been Hardened (Manual)
+[PASS] 1.2.2 - Ensure that the version of Docker is up to date (Manual)
+[INFO]        * Using 29.8.1 which is current
+[INFO]        * Check with your operating system vendor for support and security maintenance for Docker
+
+[INFO] 2 - Docker daemon configuration
+[NOTE] 2.1 - Run the Docker daemon as a non-root user, if possible (Manual)
+./functions/helper_lib.sh: line 56: pgrep: command not found
+./functions/helper_lib.sh: line 56: pgrep: command not found
+[WARN] 2.2 - Ensure network traffic is restricted between containers on the default bridge (Scored)
+./functions/helper_lib.sh: line 56: pgrep: command not found
+./functions/helper_lib.sh: line 56: pgrep: command not found
+[PASS] 2.3 - Ensure the logging level is set to 'info' (Scored)
+./functions/helper_lib.sh: line 56: pgrep: command not found
+./functions/helper_lib.sh: line 56: pgrep: command not found
+[PASS] 2.4 - Ensure Docker is allowed to make changes to iptables (Scored)
+./functions/helper_lib.sh: line 56: pgrep: command not found
+./functions/helper_lib.sh: line 56: pgrep: command not found
+[PASS] 2.5 - Ensure insecure registries are not used (Scored)
+[PASS] 2.6 - Ensure aufs storage driver is not used (Scored)
+./functions/helper_lib.sh: line 56: pgrep: command not found
+[INFO] 2.7 - Ensure TLS authentication for Docker daemon is configured (Scored)
+[INFO]      * Docker daemon not listening on TCP
+./functions/helper_lib.sh: line 56: pgrep: command not found
+./functions/helper_lib.sh: line 56: pgrep: command not found
+[INFO] 2.8 - Ensure the default ulimit is configured appropriately (Manual)
+[INFO]      * Default ulimit doesn't appear to be set
+./functions/helper_lib.sh: line 56: pgrep: command not found
+./functions/helper_lib.sh: line 56: pgrep: command not found
+[WARN] 2.9 - Enable user namespace support (Scored)
+./functions/helper_lib.sh: line 56: pgrep: command not found
+./functions/helper_lib.sh: line 56: pgrep: command not found
+[PASS] 2.10 - Ensure the default cgroup usage has been confirmed (Scored)
+./functions/helper_lib.sh: line 56: pgrep: command not found
+./functions/helper_lib.sh: line 56: pgrep: command not found
+[PASS] 2.11 - Ensure base device size is not changed until needed (Scored)
+./functions/helper_lib.sh: line 56: pgrep: command not found
+./functions/helper_lib.sh: line 56: pgrep: command not found
+[WARN] 2.12 - Ensure that authorization for Docker client commands is enabled (Scored)
+[WARN] 2.13 - Ensure centralized and remote logging is configured (Scored)
+./functions/helper_lib.sh: line 56: pgrep: command not found
+./functions/helper_lib.sh: line 56: pgrep: command not found
+[WARN] 2.14 - Ensure containers are restricted from acquiring new privileges (Scored)
+./functions/helper_lib.sh: line 56: pgrep: command not found
+[WARN] 2.15 - Ensure live restore is enabled (Scored)
+./functions/helper_lib.sh: line 56: pgrep: command not found
+[WARN] 2.16 - Ensure Userland Proxy is Disabled (Scored)
+[INFO] 2.17 - Ensure that a daemon-wide custom seccomp profile is applied if appropriate (Manual)
+[INFO] Ensure that experimental features are not implemented in production (Scored) (Deprecated)
+
+[INFO] 3 - Docker daemon configuration files
+./functions/helper_lib.sh: line 147: systemctl: command not found
+[INFO] 3.1 - Ensure that the docker.service file ownership is set to root:root (Automated)
+[INFO]      * File not found
+./functions/helper_lib.sh: line 147: systemctl: command not found
+[INFO] 3.2 - Ensure that docker.service file permissions are appropriately set (Automated)
+[INFO]      * File not found
+./functions/helper_lib.sh: line 147: systemctl: command not found
+[INFO] 3.3 - Ensure that docker.socket file ownership is set to root:root (Automated)
+[INFO]      * File not found
+./functions/helper_lib.sh: line 147: systemctl: command not found
+[INFO] 3.4 - Ensure that docker.socket file permissions are set to 644 or more restrictive (Automated)
+[INFO]      * File not found
+[INFO] 3.5 - Ensure that the /etc/docker directory ownership is set to root:root (Automated)
+[INFO]      * Directory not found
+[INFO] 3.6 - Ensure that /etc/docker directory permissions are set to 755 or more restrictively (Automated)
+[INFO]      * Directory not found
+[INFO] 3.7 - Ensure that registry certificate file ownership is set to root:root (Automated)
+[INFO]      * Directory not found
+[INFO] 3.8 - Ensure that registry certificate file permissions are set to 444 or more restrictively (Automated)
+[INFO]      * Directory not found
+./functions/helper_lib.sh: line 56: pgrep: command not found
+./functions/helper_lib.sh: line 56: pgrep: command not found
+[INFO] 3.9 - Ensure that TLS CA certificate file ownership is set to root:root (Automated)
+[INFO]      * No TLS CA certificate found
+./functions/helper_lib.sh: line 56: pgrep: command not found
+./functions/helper_lib.sh: line 56: pgrep: command not found
+[INFO] 3.10 - Ensure that TLS CA certificate file permissions are set to 444 or more restrictively (Automated)
+[INFO]       * No TLS CA certificate found
+./functions/helper_lib.sh: line 56: pgrep: command not found
+./functions/helper_lib.sh: line 56: pgrep: command not found
+[INFO] 3.11 - Ensure that Docker server certificate file ownership is set to root:root (Automated)
+[INFO]       * No TLS Server certificate found
+./functions/helper_lib.sh: line 56: pgrep: command not found
+./functions/helper_lib.sh: line 56: pgrep: command not found
+[INFO] 3.12 - Ensure that the Docker server certificate file permissions are set to 444 or more restrictively (Automated)
+[INFO]       * No TLS Server certificate found
+./functions/helper_lib.sh: line 56: pgrep: command not found
+./functions/helper_lib.sh: line 56: pgrep: command not found
+[INFO] 3.13 - Ensure that the Docker server certificate key file ownership is set to root:root (Automated)
+[INFO]       * No TLS Key found
+./functions/helper_lib.sh: line 56: pgrep: command not found
+./functions/helper_lib.sh: line 56: pgrep: command not found
+[INFO] 3.14 - Ensure that the Docker server certificate key file permissions are set to 400 (Automated)
+[INFO]       * No TLS Key found
+[INFO] 3.15 - Ensure that the Docker socket file ownership is set to root:docker (Automated)
+[INFO]       * File not found
+[INFO] 3.16 - Ensure that the Docker socket file permissions are set to 660 or more restrictively (Automated)
+[INFO]       * File not found
+[INFO] 3.17 - Ensure that the daemon.json file ownership is set to root:root (Automated)
+[INFO]       * File not found
+[INFO] 3.18 - Ensure that daemon.json file permissions are set to 644 or more restrictive (Automated)
+[INFO]       * File not found
+[INFO] 3.19 - Ensure that the /etc/default/docker file ownership is set to root:root (Automated)
+[INFO]       * File not found
+[INFO] 3.20 - Ensure that the /etc/default/docker file permissions are set to 644 or more restrictively (Automated)
+[INFO]       * File not found
+[INFO] 3.21 - Ensure that the /etc/sysconfig/docker file permissions are set to 644 or more restrictively (Automated)
+[INFO]       * File not found
+[INFO] 3.22 - Ensure that the /etc/sysconfig/docker file ownership is set to root:root (Automated)
+[INFO]       * File not found
+[INFO] 3.23 - Ensure that the Containerd socket file ownership is set to root:root (Automated)
+[INFO]       * File not found
+[INFO] 3.24 - Ensure that the Containerd socket file permissions are set to 660 or more restrictively (Automated)
+[INFO]       * File not found
+
+[INFO] 4 - Container Images and Build File
+[WARN] 4.1 - Ensure that a user for the container has been created (Automated)
+[WARN]      * Running as root: p8-db
+[WARN]      * Running as root: burp-p5
+[WARN]      * Running as root: strange_boyd
+[WARN]      * Running as root: p5-secure
+[WARN]      * Running as root: dvwa-p5
+[WARN]      * Running as root: befos_postgres
+[NOTE] 4.2 - Ensure that containers use only trusted base images (Manual)
+[NOTE] 4.3 - Ensure that unnecessary packages are not installed in the container (Manual)
+[NOTE] 4.4 - Ensure images are scanned and rebuilt to include security patches (Manual)
+[WARN] 4.5 - Ensure Content trust for Docker is Enabled (Automated)
+[WARN] 4.6 - Ensure that HEALTHCHECK instructions have been added to container images (Automated)
+[WARN]      * No Healthcheck found: [p6-lab:latest]
+[WARN]      * No Healthcheck found: [burp-p5:latest]
+[WARN]      * No Healthcheck found: [myapp-backend:latest]
+[WARN]      * No Healthcheck found: [filemanagerapp:local]
+[WARN]      * No Healthcheck found: [john-jumbo-lab:latest]
+[WARN]      * No Healthcheck found: [sonarsource/sonar-scanner-cli:latest]
+[WARN]      * No Healthcheck found: [semgrep/semgrep:latest]
+[WARN]      * No Healthcheck found: [php:8.3-cli]
+[WARN]      * No Healthcheck found: [aquasec/trivy:latest]
+[WARN]      * No Healthcheck found: [debian:bookworm-slim]
+[WARN]      * No Healthcheck found: [sonarqube:community]
+[WARN]      * No Healthcheck found: [eclipse-temurin:21-jre]
+[WARN]      * No Healthcheck found: [parrotsec/sqlmap:latest]
+[WARN]      * No Healthcheck found: [befos-fresh-backend:latest]
+[WARN]      * No Healthcheck found: [python:3.12-slim]
+[WARN]      * No Healthcheck found: [postgres:16-alpine]
+[WARN]      * No Healthcheck found: [alpine:latest]
+[WARN]      * No Healthcheck found: [pierrickv/john:latest]
+[WARN]      * No Healthcheck found: [vulnerables/web-dvwa:latest]
+[INFO] 4.7 - Ensure update instructions are not used alone in the Dockerfile (Manual)
+[INFO]      * Update instruction found: [p8-web:local]
+[INFO]      * Update instruction found: [p6-lab:latest]
+[INFO]      * Update instruction found: [burp-p5:latest]
+[INFO]      * Update instruction found: [myapp-backend:latest]
+[INFO]      * Update instruction found: [filemanagerapp:local]
+[INFO]      * Update instruction found: [john-jumbo-lab:latest]
+[INFO]      * Update instruction found: [php:8.3-cli]
+[INFO]      * Update instruction found: [sonarqube:community]
+[INFO]      * Update instruction found: [eclipse-temurin:21-jre]
+[INFO]      * Update instruction found: [parrotsec/sqlmap:latest]
+[INFO]      * Update instruction found: [befos-fresh-backend:latest]
+[INFO]      * Update instruction found: [python:3.12-slim]
+[INFO]      * Update instruction found: [pierrickv/john:latest]
+[INFO]      * Update instruction found: [vulnerables/web-dvwa:latest]
+[NOTE] 4.8 - Ensure setuid and setgid permissions are removed (Manual)
+[INFO] 4.9 - Ensure that COPY is used instead of ADD in Dockerfiles (Manual)
+[INFO]      * ADD in image history: [sonarqube:community]
+[NOTE] 4.10 - Ensure secrets are not stored in Dockerfiles (Manual)
+[NOTE] 4.11 - Ensure only verified packages are installed (Manual)
+[NOTE] 4.12 - Ensure all signed artifacts are validated (Manual)
+
+[INFO] 5 - Container Runtime
+[PASS] 5.1 - Ensure swarm mode is not Enabled, if not needed (Automated)
+[WARN] 5.2 - Ensure that, if applicable, an AppArmor Profile is enabled (Automated)
+[WARN]      * No AppArmorProfile Found: p8-db
+[WARN]      * No AppArmorProfile Found: p8-web
+[WARN]      * No AppArmorProfile Found: burp-p5
+[WARN]      * No AppArmorProfile Found: befos_backend
+[WARN]      * No AppArmorProfile Found: strange_boyd
+[WARN]      * No AppArmorProfile Found: p5-secure
+[WARN]      * No AppArmorProfile Found: sonarqube-p5
+[WARN]      * No AppArmorProfile Found: dvwa-p5
+[WARN]      * No AppArmorProfile Found: befos_postgres
+[WARN] 5.3 - Ensure that, if applicable, SELinux security options are set (Automated)
+[WARN]      * No SecurityOptions Found: burp-p5
+[WARN]      * No SecurityOptions Found: befos_backend
+[WARN]      * No SecurityOptions Found: strange_boyd
+[WARN]      * No SecurityOptions Found: p5-secure
+[WARN]      * No SecurityOptions Found: sonarqube-p5
+[WARN]      * No SecurityOptions Found: dvwa-p5
+[WARN]      * No SecurityOptions Found: befos_postgres
+[PASS] 5.4 - Ensure that Linux kernel capabilities are restricted within containers (Automated)
+[PASS] 5.5 - Ensure that privileged containers are not used (Automated)
+[PASS] 5.6 - Ensure sensitive host system directories are not mounted on containers (Automated)
+[PASS] 5.7 - Ensure sshd is not run within containers (Automated)
+[PASS] 5.8 - Ensure privileged ports are not mapped within containers (Automated)
+[WARN] 5.9 - Ensure that only needed ports are open on the container (Manual)
+[WARN]      * Port in use: 8088 in p8-web
+[WARN]      * Port in use: 8085 in burp-p5
+[WARN]      * Port in use: 8000 in befos_backend
+[WARN]      * Port in use: 8082 in p5-secure
+[WARN]      * Port in use: 9000 in sonarqube-p5
+[WARN]      * Port in use: 8081 in dvwa-p5
+[WARN]      * Port in use: 5432 in befos_postgres
+[PASS] 5.10 - Ensure that the host's network namespace is not shared (Automated)
+[WARN] 5.11 - Ensure that the memory usage for containers is limited (Automated)
+[WARN]       * Container running without memory restrictions: burp-p5
+[WARN]       * Container running without memory restrictions: befos_backend
+[WARN]       * Container running without memory restrictions: strange_boyd
+[WARN]       * Container running without memory restrictions: p5-secure
+[WARN]       * Container running without memory restrictions: sonarqube-p5
+[WARN]       * Container running without memory restrictions: dvwa-p5
+[WARN]       * Container running without memory restrictions: befos_postgres
+[WARN] 5.12 - Ensure that CPU priority is set appropriately on containers (Automated)
+[WARN]       * Container running without CPU restrictions: burp-p5
+[WARN]       * Container running without CPU restrictions: befos_backend
+[WARN]       * Container running without CPU restrictions: strange_boyd
+[WARN]       * Container running without CPU restrictions: p5-secure
+[WARN]       * Container running without CPU restrictions: sonarqube-p5
+[WARN]       * Container running without CPU restrictions: dvwa-p5
+[WARN]       * Container running without CPU restrictions: befos_postgres
+[WARN] 5.13 - Ensure that the container's root filesystem is mounted as read only (Automated)
+[WARN]       * Container running with root FS mounted R/W: burp-p5
+[WARN]       * Container running with root FS mounted R/W: befos_backend
+[WARN]       * Container running with root FS mounted R/W: strange_boyd
+[WARN]       * Container running with root FS mounted R/W: p5-secure
+[WARN]       * Container running with root FS mounted R/W: sonarqube-p5
+[WARN]       * Container running with root FS mounted R/W: dvwa-p5
+[WARN]       * Container running with root FS mounted R/W: befos_postgres
+[WARN] 5.14 - Ensure that incoming container traffic is bound to a specific host interface (Automated)
+[WARN]       * Port being bound to wildcard IP: 0.0.0.0 in befos_backend
+[PASS] 5.15 - Ensure that the 'on-failure' container restart policy is set to '5' (Automated)
+[PASS] 5.16 - Ensure that the host's process namespace is not shared (Automated)
+[PASS] 5.17 - Ensure that the host's IPC namespace is not shared (Automated)
+[PASS] 5.18 - Ensure that host devices are not directly exposed to containers (Manual)
+[INFO] 5.19 - Ensure that the default ulimit is overwritten at runtime if needed (Manual)
+[INFO]       * Container no default ulimit override: p8-db
+[INFO]       * Container no default ulimit override: p8-web
+[INFO]       * Container no default ulimit override: burp-p5
+[INFO]       * Container no default ulimit override: befos_backend
+[INFO]       * Container no default ulimit override: strange_boyd
+[INFO]       * Container no default ulimit override: p5-secure
+[INFO]       * Container no default ulimit override: sonarqube-p5
+[INFO]       * Container no default ulimit override: dvwa-p5
+[INFO]       * Container no default ulimit override: befos_postgres
+[PASS] 5.20 - Ensure mount propagation mode is not set to shared (Automated)
+[PASS] 5.21 - Ensure that the host's UTS namespace is not shared (Automated)
+[PASS] 5.22 - Ensure the default seccomp profile is not Disabled (Automated)
+[NOTE] 5.23 - Ensure that docker exec commands are not used with the privileged option (Automated)
+[NOTE] 5.24 - Ensure that docker exec commands are not used with the user=root option (Manual)
+[PASS] 5.25 - Ensure that cgroup usage is confirmed (Automated)
+./functions/helper_lib.sh: line 56: pgrep: command not found
+./functions/helper_lib.sh: line 56: pgrep: command not found
+[WARN] 5.26 - Ensure that the container is restricted from acquiring additional privileges (Automated)
+[WARN]       * Privileges not restricted: burp-p5
+[WARN]       * Privileges not restricted: befos_backend
+[WARN]       * Privileges not restricted: strange_boyd
+[WARN]       * Privileges not restricted: p5-secure
+[WARN]       * Privileges not restricted: sonarqube-p5
+[WARN]       * Privileges not restricted: dvwa-p5
+[WARN]       * Privileges not restricted: befos_postgres
+[WARN] 5.27 - Ensure that container health is checked at runtime (Automated)
+[WARN]       * Health check not set: burp-p5
+[WARN]       * Health check not set: strange_boyd
+[WARN]       * Health check not set: p5-secure
+[WARN]       * Health check not set: sonarqube-p5
+[WARN]       * Health check not set: dvwa-p5
+[INFO] 5.28 - Ensure that Docker commands always make use of the latest version of their image (Manual)
+[WARN] 5.29 - Ensure that the PIDs cgroup limit is used (Automated)
+[WARN]       * PIDs limit not set: burp-p5
+[WARN]       * PIDs limit not set: befos_backend
+[WARN]       * PIDs limit not set: strange_boyd
+[WARN]       * PIDs limit not set: p5-secure
+[WARN]       * PIDs limit not set: sonarqube-p5
+[WARN]       * PIDs limit not set: dvwa-p5
+[WARN]       * PIDs limit not set: befos_postgres
+[INFO] 5.30 - Ensure that Docker's default bridge 'docker0' is not used (Manual)
+[INFO]       * Container in docker0 network: sonarqube-p5
+[INFO]       * Container in docker0 network: burp-p5
+[INFO]       * Container in docker0 network: dvwa-p5
+[INFO]       * Container in docker0 network: strange_boyd
+[INFO]       * Container in docker0 network: p5-secure
+[PASS] 5.31 - Ensure that the host's user namespaces are not shared (Automated)
+[PASS] 5.32 - Ensure that the Docker socket is not mounted inside any containers (Automated)
+
+[INFO] 6 - Docker Security Operations
+[INFO] 6.1 - Ensure that image sprawl is avoided (Manual)
+[INFO]      * There are currently: 21 images
+[INFO]      * Only 8 out of 21 are in use
+[INFO] 6.2 - Ensure that container sprawl is avoided (Manual)
+[INFO]      * There are currently a total of 9 containers, with 9 of them currently running
+
+[INFO] 7 - Docker Swarm Configuration
+[PASS] 7.1 - Ensure that the minimum number of manager nodes have been created in a swarm (Automated) (Swarm mode not enabled)
+[PASS] 7.2 - Ensure that swarm services are bound to a specific host interface (Automated) (Swarm mode not enabled)
+[PASS] 7.3 - Ensure that all Docker swarm overlay networks are encrypted (Automated)
+[PASS] 7.4 - Ensure that Docker's secret management commands are used for managing secrets in a swarm cluster (Manual) (Swarm mode not enabled)
+[PASS] 7.5 - Ensure that swarm manager is run in auto-lock mode (Automated) (Swarm mode not enabled)
+[PASS] 7.6 - Ensure that the swarm manager auto-lock key is rotated periodically (Manual) (Swarm mode not enabled)
+[PASS] 7.7 - Ensure that node certificates are rotated as appropriate (Manual) (Swarm mode not enabled)
+[PASS] 7.8 - Ensure that CA certificates are rotated as appropriate (Manual) (Swarm mode not enabled)
+[PASS] 7.9 - Ensure that management plane traffic is separated from data plane traffic (Manual) (Swarm mode not enabled)
+
+
+Section C - Score
+
+[INFO] Checks: 117
+[INFO] Score: 3
+
